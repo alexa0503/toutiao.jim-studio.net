@@ -19,4 +19,15 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    public function lottery()
+    {
+        $result = ['ret' => 0, 'prize' => [], 'msg' => ''];
+        $lottery = new Helper\Lottery();
+        $lottery->run();
+        $prize_code = $lottery->getCode();
+        $prize_id = $lottery->getPrizeId();
+        $result['prize']['id'] = $prize_id;
+
+        return json_encode($result);
+    }
 }
