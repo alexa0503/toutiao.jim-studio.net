@@ -11,7 +11,7 @@ Route::any('/wechat', 'WechatController@serve');
 */
 Route::get('/', 'HomeController@index');
 Route::get('game', 'HomeController@game');
-Route::any('lottery', 'HomeController@lottery');
+Route::post('lottery', 'HomeController@lottery');
 Route::get('/wx/share', function(){
     $url = urldecode(Request::get('url'));
     $options = [
