@@ -22,7 +22,7 @@ Route::get('/wx/share', function(){
     $wx = new EasyWeChat\Foundation\Application($options);
     $js = $wx->js;
     $js->setUrl($url);
-    $config = json_decode($js->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'), true), true);
+    $config = json_decode($js->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'), false), true);
     $share = [
       'title' => env('WECHAT_SHARE_TITLE'),
       'desc' => env('WECHAT_SHARE_DESC'),
@@ -30,6 +30,10 @@ Route::get('/wx/share', function(){
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
     ];
     return json_encode(array_merge($share, $config));
+});
+Route::get('logout',function(){
+    Request::session()->set('wechat.openid',null);
+    return redirect('/');
 });
 /*
 |--------------------------------------------------------------------------

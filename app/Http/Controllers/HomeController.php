@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-//use Carbon;
 use Carbon\Carbon;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Helper;
 class HomeController extends Controller
 {
     public function __construct()
