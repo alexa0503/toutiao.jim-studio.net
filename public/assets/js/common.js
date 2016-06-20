@@ -567,22 +567,34 @@ function checkDrag2() {
 
 var canGetRes = true;
 
-function goRes() {
+function goRes(url) {
     if (canGetRes) {
         canGetRes = false;
         //ajax抽奖
-        var awardNumb = 2; //1-3 1-3等奖
-        $('.getAward' + awardNumb).show();
-        $('.pageGame6').fadeOut(500);
-        $('.pageGame7').fadeIn(500);
-
-        //未中奖
-        //$('.getAward0').show();
-        //$('.pageGame6').fadeOut(500);
-        //$('.pageGame7').fadeIn(500);
-
-        //失败
-        canGetRes = true;
+	$.ajax(url, {
+		type: 'post',
+		dataType: 'json',
+		success: function(json){
+			if(json.ret == 0 && json.prize > 0){
+				var awardNumb = json.prize; //1-3 1-3等奖
+				$('.getAward' + awardNumb).show();
+				$('.pageGame6').fadeOut(500);
+				$('.pageGame7').fadeIn(500);
+			}
+			else{
+				//未中奖
+				$('.getAward0').show();
+				$('.pageGame6').fadeOut(500);
+				$('.pageGame7').fadeIn(500);
+				canGetRes = true;
+				//alert(json.msg)
+			}
+		},
+		error: function(){
+			canGetRes = true;
+			alert('网络异常，请稍候重试~')
+		}
+	})
     }
 }
 

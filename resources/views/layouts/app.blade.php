@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{env("PAGE_TITLE")}}</title>
     <link rel="stylesheet" href="{{asset('assets/css/common.css')}}">
     <script>

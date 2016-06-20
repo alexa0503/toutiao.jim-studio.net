@@ -164,7 +164,7 @@ body{ background:#000;}
                 	<div class="game8Img4 bgImg"></div>
                     <div class="game8Img5 bgImg"></div>
                     <div class="game8Img6 bgImg"></div>
-                    <a href="javascript:void(0);" onClick="goRes();" class="abs endBottle"><img src="{{asset('assets/images/space.gif')}}" width="100" height="305"></a>
+                    <a href="javascript:void(0);" onClick="goRes('{{asset("lottery")}}');" class="abs endBottle"><img src="{{asset('assets/images/space.gif')}}" width="100" height="305"></a>
                 </div>
             </div>
         </div>
@@ -227,9 +227,14 @@ body{ background:#000;}
 <script src="{{asset('assets/js/common.js')}}"></script>
 <script>
 $(document).ready(function(){
-	loadingGame();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    loadingGame();
     wxShare();
 	//testDarg();
-	});
+});
 </script>
 @endsection
