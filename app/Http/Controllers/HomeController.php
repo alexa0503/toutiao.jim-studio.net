@@ -30,6 +30,7 @@ class HomeController extends Controller
         $prize_code = $lottery->getCode();
         $prize_id = $lottery->getPrizeId();
         $result['prize']['id'] = $prize_id;
+        $result['prize']['code'] = $prize_code;
 
         return json_encode($result);
     }

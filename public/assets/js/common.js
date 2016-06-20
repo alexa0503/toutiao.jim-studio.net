@@ -575,8 +575,12 @@ function goRes(url) {
 		type: 'post',
 		dataType: 'json',
 		success: function(json){
-			if(json.ret == 0 && json.prize > 0){
-				var awardNumb = json.prize; //1-3 1-3等奖
+			if(json.ret == 0 && json.prize && json.prize.id > 0){
+				var awardNumb = json.prize.id; //1-3 1-3等奖
+                    if(json.prize.id > 1){
+                        $('#prize_code_'+json.prize.id).text(json.prize.code)
+                    }
+
 				$('.getAward' + awardNumb).show();
 				$('.pageGame6').fadeOut(500);
 				$('.pageGame7').fadeIn(500);
