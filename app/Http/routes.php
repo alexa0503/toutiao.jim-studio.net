@@ -36,7 +36,7 @@ Route::get('logout',function(){
     return redirect('/');
 });
 Route::get('login',function(){
-    Request::session()->set('wechat.openid','ooXjWt5ctInxsxqBkYK5_CZ-W96s');
+    Request::session()->set('wechat.openid','o2-sBj0oOQJCIq6yR7I9HtrqxZcY');
     return redirect('/');
 });
 /*
