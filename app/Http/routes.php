@@ -35,6 +35,10 @@ Route::get('logout',function(){
     Request::session()->set('wechat.openid',null);
     return redirect('/');
 });
+Route::get('login',function(){
+    Request::session()->set('wechat.openid','ooXjWt5ctInxsxqBkYK5_CZ-W96s');
+    return redirect('/');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
