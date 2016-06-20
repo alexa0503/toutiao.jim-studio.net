@@ -10,6 +10,7 @@ Route::group(['middleware' => ['web','wechat.oauth']], function () {
 Route::any('/wechat', 'WechatController@serve');
 */
 Route::get('/', 'HomeController@index');
+Route::get('game', 'HomeController@game');
 Route::get('/wx/share', function(){
     $url = urldecode(Request::get('url'));
     $options = [

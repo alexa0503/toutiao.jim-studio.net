@@ -19,6 +19,10 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    public function game()
+    {
+        return view('game');
+    }
     public function lottery()
     {
         $result = ['ret' => 0, 'prize' => [], 'msg' => ''];

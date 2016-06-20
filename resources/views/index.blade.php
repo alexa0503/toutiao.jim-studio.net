@@ -1,21 +1,87 @@
 @extends('layouts.app')
+@section('style')
+<style>
+	@-ms-viewport { width:device-width; }
+	@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+	html { height:100%; }
+	body { height:100%; overflow:hidden; margin:0; padding:0; }
+</style>
+@endsection
+@section('headerScripts')
+<script src="{{asset('assets/js/jquery-1.9.1-mod.js')}}"></script>
+<script src="{{asset('assets/js/jquery.imgpreload-mod.js')}}"></script>
+<script src="{{asset('assets/js/touch.js')}}"></script>
+<script src="{{asset('assets/pano.js')}}"></script>
+<script src="{{asset('assets/js/common-mod.js')}}"></script>
+@endsection
 @section('content')
-<div class="container">
-    <div class="content">
-        <div class="title">测试页面</div>
-        <div class="desc"></div>
+<div class="pageOuter">
+	<div class="page0 page">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0Bg bgImg"></div>
+            	<div class="page0Img1 bgImg" style="display:none;"></div>
+                <div class="page0Img2 bgImg" style="display:none;"></div>
+                <img src="{{asset('assets/images/loadingImg.png')}}" class="abs loadingImg" style="display:none;">
+                <div class="loadTxt abs" style="display:none;">LOADING <span>0</span>%</div>
+
+                <div class="page0Img3 bgImg" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page0Img4" style="display:none;"></div>
+
+    <div class="page1 page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page1Img1" id="page1Img1" style="display:none;"></div>
+                <div class="page1Img2" id="page1Img2" style="display:none;"></div>
+
+                <div id="pano" class="bgImg" style="width:640px;height:1039px; position:absolute; left:50%; margin-left:-320px; display:none;">
+                    <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+                    <script>
+                        embedpano({swf: "{{asset('assets/krpano.swf')}}", xml: "{{asset('assets/tour.xml')}}", target: "pano", html5: "prefer", initvars: {design: "flat"}, passQueryParameters: !0});
+                    </script>
+                </div>
+
+                <div class="page1Img3 bgImg"></div>
+                <div class="page1Img0 bgImg"></div>
+
+                <div class="page1Img4 bgImg" style="display:none;"></div>
+                <div class="page1Img5 bgImg" style="display:none;"></div>
+
+                <div class="page1Img6 bgImg" style="display:none;"></div>
+                <img src="{{asset('assets/images/page1Img7.png')}}" class="abs page1Img7" style="display:none;">
+                <img src="{{asset('assets/images/space.gif')}}" width="146" height="146" class="abs page1Img8" style="display:none;" onClick="backPano2();">
+            </div>
+        </div>
+    </div>
+
+    <div class="page2 page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page2Img1 bgImg" style="overflow:visible;">
+                	<img src="{{asset('assets/images/page2Img1.jpg')}}" class="abs page2Img1Img">
+                </div>
+                <img src="{{asset('assets/images/page2Img2.png')}}" class="abs page2Img2" onClick="goGame('{{url("game")}}');" style="display:none;">
+            </div>
+        </div>
     </div>
 </div>
+
+<img src="{{asset('assets/images/logo.png')}}" class="abs logo">
+<a href="javascript:void(0);" class="abs musicBtn"><img src="{{asset('assets/images/musicBtn.png')}}"></a>
+
 @endsection
 @section('scripts')
+<script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>
 <script>
-$(document).ready(function(){
-    //wxData.title = '{{env("WECHAT_SHARE_TITLE")}}';
-    //wxData.desc = '{{env("WECHAT_SHARE_DESC")}}';
-    //wxData.link = location.href;
-    //wxData.imgUrl = '{{asset(env("WECHAT_SHARE_IMG"))}}';
-    //wxData.debug = true;
-    wxShare();
+$j(document).ready(function(){
+    loadingImg();
+});
+$(document).ready(function() {
+	wxShare();
 });
 </script>
 @endsection

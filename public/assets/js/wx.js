@@ -12,7 +12,11 @@ $('document').ready(function () {
                 timestamp: wxData.timestamp,
                 nonceStr: wxData.nonceStr,
                 signature: wxData.signature,
-                jsApiList: wxData.jsApiList
+                jsApiList: [
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ'
+                ]
             });
         },
         error: function () {
