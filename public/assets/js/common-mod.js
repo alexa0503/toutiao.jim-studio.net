@@ -172,7 +172,7 @@ function showMyAward(prize_id,prize_code) {
     }
     else{
          $j('.indexBtn1,.indexBtn2,.indexBtn3').show();
-		 $j('.page0Award0').fadeIn(500);
+	        $j('.pageAward0').fadeIn(500);
     }
 
 }
