@@ -323,3 +323,5 @@ select,input,textarea{font-family:inherit; outline:none;}
 
 .gameOver{ background:url(../images/gameOver.png) 0 0 no-repeat;}
 .endBtn3{ left:195px; top:608px;}
+
+.shareBg{ position:fixed; left:50%; top:0; margin-left:-320px; z-index:500;}
