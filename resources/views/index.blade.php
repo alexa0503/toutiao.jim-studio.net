@@ -28,7 +28,7 @@
                 <div class="page0Img4 bgImg" style="display:none;"></div>
                 <a href="javascript:void(0);" class="abs indexBtn1" onClick="indexStartGame();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn2" onClick="showRule();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
-                <a href="javascript:void(0);" class="abs indexBtn3" onClick="showMyAward({{$prize_id}});" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn3" onClick="showMyAward({{$prize_id}},'{{$prize_code}}');" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
 
                 <div class="page0Img3 bgImg" style="display:none;"></div>
             </div>
@@ -52,13 +52,12 @@
         	<div class="innerDiv">
 				<div class="page0Award page0Award1 bgImg"></div>
                 <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
-                <div class="abs a2Numb">兑换码: <span id="prize_code_2"></span></div>
                 <a href="javascript:void(0);" class="abs indexBtn6" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
             </div>
         </div>
     </div>
-    
+
     <div class="pageAward2 page" style="display:none;">
     	<div class="h832">
         	<div class="innerDiv">
@@ -70,7 +69,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="pageAward3 page" style="display:none;">
     	<div class="h832">
         	<div class="innerDiv">
@@ -81,7 +80,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="pageAward0 page" style="display:none;">
     	<div class="h832">
         	<div class="innerDiv">

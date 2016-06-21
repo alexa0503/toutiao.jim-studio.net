@@ -155,12 +155,20 @@ function closeRule() {
     $j('.pageRule').fadeOut(500);
 }
 
-function showMyAward(prize_id) {
+function showMyAward(prize_id,prize_code) {
     if( prize_id > 0 ){
         $j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
-        $j('.pageAward1').fadeIn(500);//1等奖
-		//$j('.pageAward2').fadeIn(500);//2等奖
-		//$j('.pageAward3').fadeIn(500);//3等奖
+        if( prize_id == 1){
+            $j('.pageAward1').fadeIn(500);//1等奖
+        }
+        else if( prize_id == 2){
+            $j('#prize_code_2').text(prize_code);
+            $j('.pageAward2').fadeIn(500);//2等奖
+        }
+        else{
+            $j('#prize_code_3').text(prize_code);
+            $j('.pageAward3').fadeIn(500);//3等奖
+        }
     }
     else{
          $j('.indexBtn1,.indexBtn2,.indexBtn3').show();
