@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         if ($lottery != null) {
             $prize_id = $lottery->prize_id;
-            $prize_code = $lottery->prizeCode->code;
+            $prize_code = $lottery->prize_code_id == null ? null : $lottery->prizeCode->code;
         } else {
             $prize_id = 0;
             $prize_code = null;
