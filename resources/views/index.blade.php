@@ -63,7 +63,7 @@
         	<div class="innerDiv">
 				<div class="page0Award page0Award2 bgImg"></div>
                 <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
-                <div class="abs a3Numb">兑换码: <span id="prize_code_3"></span></div>
+                <div class="abs a3Numb">兑换码: <span id="prize_code_2"></span></div>
                 <a href="javascript:void(0);" class="abs indexBtn6b" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
             </div>
@@ -75,6 +75,7 @@
         	<div class="innerDiv">
 				<div class="page0Award page0Award3 bgImg"></div>
                 <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
+                <div class="abs a3Numb">兑换码: <span id="prize_code_3"></span></div>
                 <a href="javascript:void(0);" class="abs indexBtn6b" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
             </div>
