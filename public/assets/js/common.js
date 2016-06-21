@@ -559,7 +559,7 @@ function checkDrag2() {
             koNumb = randomNumb(65, 69);
         }
         //wxData.title = '';
-        wxData.desc = '恭喜你击败全国'+koNumb+'%人，率先找到传说中的降暑良策';
+        wxData.desc = '恭喜你击败全国' + koNumb + '%人，率先找到传说中的降暑良策';
         wxShare();
 
         $('.game6A2').delay(500).fadeOut(500);
@@ -574,34 +574,33 @@ function goRes(url) {
     if (canGetRes) {
         canGetRes = false;
         //ajax抽奖
-	$.ajax(url, {
-		type: 'post',
-		dataType: 'json',
-		success: function(json){
-			if(json.ret == 0 && json.prize && json.prize.id > 0){
-				var awardNumb = json.prize.id; //1-3 1-3等奖
-                    if(json.prize.id > 1){
-                        $('#prize_code_'+json.prize.id).text(json.prize.code)
+        $.ajax(url, {
+            type: 'post',
+            dataType: 'json',
+            success: function(json) {
+                if (json.ret == 0 && json.prize && json.prize.id > 0) {
+                    var awardNumb = json.prize.id; //1-3 1-3等奖
+                    if (json.prize.id > 1) {
+                        $('#prize_code_' + json.prize.id).text(json.prize.code)
                     }
 
-				$('.getAward' + awardNumb).show();
-				$('.pageGame6').fadeOut(500);
-				$('.pageGame7').fadeIn(500);
-			}
-			else{
-				//未中奖
-				$('.getAward0').show();
-				$('.pageGame6').fadeOut(500);
-				$('.pageGame7').fadeIn(500);
-				canGetRes = true;
-				//alert(json.msg)
-			}
-		},
-		error: function(){
-			canGetRes = true;
-			alert('网络异常，请稍候重试~')
-		}
-	})
+                    $('.getAward' + awardNumb).show();
+                    $('.pageGame6').fadeOut(500);
+                    $('.pageGame7').fadeIn(500);
+                } else {
+                    //未中奖
+                    $('.getAward0').show();
+                    $('.pageGame6').fadeOut(500);
+                    $('.pageGame7').fadeIn(500);
+                    canGetRes = true;
+                    //alert(json.msg)
+                }
+            },
+            error: function() {
+                canGetRes = true;
+                alert('网络异常，请稍候重试~')
+            }
+        })
     }
 }
 
