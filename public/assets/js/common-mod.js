@@ -180,9 +180,9 @@ function showMyAward(prize_id,prize_code) {
 function closeAward() {
     $j('.indexBtn1,.indexBtn2,.indexBtn3').show();
     $j('.pageAward1').fadeOut(500);
-	$j('.pageAward1').fadeOut(500);
-	$j('.pageAward1').fadeOut(500);
-	$j('.pageAward1').fadeOut(500);
+	$j('.pageAward2').fadeOut(500);
+	$j('.pageAward3').fadeOut(500);
+    $j('.pageAward0').fadeOut(500);
 }
 
 function showShareNote() {

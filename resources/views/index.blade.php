@@ -85,7 +85,7 @@
     <div class="pageAward0 page" style="display:none;">
     	<div class="h832">
         	<div class="innerDiv">
-				<div class="page0Award page0Award0 bgImg" onClick="closePageAward0();"></div>
+				<div class="page0Award page0Award0 bgImg" onClick="closeAward();"></div>
             </div>
         </div>
     </div>
