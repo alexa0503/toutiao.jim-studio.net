@@ -47,13 +47,45 @@
         </div>
     </div>
 
-    <div class="pageAward page" style="display:none;">
+    <div class="pageAward1 page" style="display:none;">
     	<div class="h832">
         	<div class="innerDiv">
 				<div class="page0Award page0Award1 bgImg"></div>
                 <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
+                <div class="abs a2Numb">兑换码: <span id="prize_code_2"></span></div>
                 <a href="javascript:void(0);" class="abs indexBtn6" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pageAward2 page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0Award page0Award2 bgImg"></div>
+                <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
+                <div class="abs a3Numb">兑换码: <span id="prize_code_3"></span></div>
+                <a href="javascript:void(0);" class="abs indexBtn6b" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pageAward3 page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0Award page0Award3 bgImg"></div>
+                <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
+                <a href="javascript:void(0);" class="abs indexBtn6b" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pageAward0 page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0Award page0Award0 bgImg" onClick="closePageAward0();"></div>
             </div>
         </div>
     </div>
@@ -99,6 +131,8 @@
 
 <img src="{{asset('assets/images/logo.png')}}" class="abs logo">
 <a href="javascript:void(0);" class="abs musicBtn"><img src="{{asset('assets/images/musicBtn.png')}}"></a>
+
+<img src="{{asset('assets/images/shareBg.png')}}" class="shareBg" style="display:none;" onClick="closeShare();">
 @endsection
 @section('scripts')
 <script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>

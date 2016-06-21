@@ -216,6 +216,8 @@ body{ background:#000;}
 <a href="javascript:void(0);" class="abs musicBtn"><img src="{{asset('assets/images/musicBtn.png')}}"></a>
 
 <div class="abs colddownTime" style="display:none;">03:00</div>
+
+<img src="{{asset('assets/images/shareBg.png')}}" class="shareBg" style="display:none;" onClick="closeShare();">
 @endsection
 @section('scripts')
 <script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>

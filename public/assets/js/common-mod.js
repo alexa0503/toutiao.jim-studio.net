@@ -158,22 +158,32 @@ function closeRule() {
 function showMyAward(prize_id) {
     if( prize_id > 0 ){
         $j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
-        $j('.pageAward').fadeIn(500);
+        $j('.pageAward1').fadeIn(500);//1等奖
+		//$j('.pageAward2').fadeIn(500);//2等奖
+		//$j('.pageAward3').fadeIn(500);//3等奖
     }
     else{
-        alert('您还没有中奖哦~');
+         $j('.indexBtn1,.indexBtn2,.indexBtn3').show();
+		 $j('.page0Award0').fadeIn(500);
     }
 
 }
 
 function closeAward() {
     $j('.indexBtn1,.indexBtn2,.indexBtn3').show();
-    $j('.pageAward').fadeOut(500);
+    $j('.page0Award1').fadeOut(500);
+	$j('.page0Award2').fadeOut(500);
+	$j('.page0Award3').fadeOut(500);
+	$j('.page0Award0').fadeOut(500);
 }
 
 function showShareNote() {
-
+$j('.shareBg').fadeIn(500);
 }
+
+function closeShare(){
+	$j('.shareBg').fadeOut(500);
+	}
 
 function getBottle() {
     $j('#pano').fadeOut(500);

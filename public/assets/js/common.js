@@ -605,8 +605,12 @@ function goRes(url) {
 }
 
 function showShareNote() {
-
+$('.shareBg').fadeIn(500);
 }
+
+function closeShare(){
+	$('.shareBg').fadeOut(500);
+	}
 
 var cdt = 180; //3分钟
 var cdn = 180; //开始180秒
