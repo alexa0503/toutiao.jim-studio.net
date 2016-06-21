@@ -41,16 +41,6 @@
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">抽奖方式</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <select class="form-control" name="type">
-                                                <option value="0">输码</option>
-                                                <option value="1">普通</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">奖品数量</label>
                                         <div class="col-lg-10 col-md-9">
                                             <input type="text" class="form-control" name="prize_num" value="">

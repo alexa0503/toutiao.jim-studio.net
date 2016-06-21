@@ -48,7 +48,6 @@
                                     <tr>
                                         <th>日期</th>
                                         <th>奖品</th>
-                                        <th>类型</th>
                                         <th>奖品数量</th>
                                         <th>已中</th>
                                         <th>操作</th>
@@ -59,7 +58,6 @@
                                     <tr>
                                         <td>{{$prize_config->lottery_date}}</td>
                                         <td>{{$prize_config->prizeInfo->title}}</td>
-                                        <td>{{$prize_config->type == 1 ? '普通' : '输码'}}</td>
                                         <td>{{$prize_config->prize_num}}</td>
                                         <td>{{$prize_config->win_num}}</td>
                                         <td><a href="{{ url('cms/prize/config/update/'.$prize_config->id) }}" title="点击更改" class="btn btn-info btn-sm update">修改</a></td>

@@ -12,6 +12,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="application-name" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Import google fonts - Heading first/ text second -->
     <link href="{{asset('assets/cms/css/font.css')}}" rel='stylesheet' type='text/css'>
     <!-- Css files -->
@@ -90,11 +91,17 @@
 <!-- Other plugins ( load only nessesary plugins for every page) -->
 <script src="{{asset('assets/cms/plugins/charts/sparklines/jquery.sparkline.js')}}"></script>
 <script src="{{asset('assets/cms/js/jquery.dynamic.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js')}}"></script>
 <script src="{{asset('assets/cms/js/main.js')}}"></script>
 <script src="{{asset('assets/cms/js/pages/blank.js')}}"></script>
 @yield('scripts')
 <script>
     $().ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.get('/cms/user/logs',function (data) {
             $('#userLogs').html(data);
         })

@@ -12,4 +12,8 @@ class PrizeCode extends Model
     {
         return $this->hasOne('App\Lottery');
     }
+    public function prize()
+    {
+        return $this->belongsTo('App\Prize', 'prize_id');
+    }
 }

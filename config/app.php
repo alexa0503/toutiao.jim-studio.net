@@ -161,7 +161,8 @@ return [
         Illuminate\Html\MenuServiceProvider::class,
         #excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -210,11 +211,13 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Menu' => Illuminate\Support\Facades\Menu::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
     'cdn' => [
         //"cdn.keycdn.com" => "css|js|eot|woff|ttf",
         //"img.keycdn.com" => "jpg|jpeg|png|gif|svg",
-        "mae.himyweb.com/campaign/music/public" => ""
+        'mae.himyweb.com/campaign/music/public' => '',
     ],
 ];

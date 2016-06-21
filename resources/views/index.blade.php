@@ -65,7 +65,6 @@
         	<div class="innerDiv">
 				<div class="page1Img1" id="page1Img1" style="display:none;"></div>
                 <div class="page1Img2" id="page1Img2" style="display:none;"></div>
-
                 <div id="pano" class="bgImg" style="width:640px;height:1039px; position:absolute; left:50%; margin-left:-320px; display:none;">
                     <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
                     <script>

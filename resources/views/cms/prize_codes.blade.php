@@ -33,8 +33,8 @@
                                     @foreach ($prize_codes as $prize_code)
                                     <tr>
                                         <td>{{$prize_code->id}}</td>
-                                        <td>@if ($prize_code->type == 1)蜘蛛网电子礼品兑换券@elseif($prize_code->type == 2)蜘蛛网电影通兑券@else蜘蛛网电子优惠券 @endif</td>
-                                        <td>{{$prize_code->prize_code}}</td>
+                                        <td>{{$prize_code->prize->title}}</td>
+                                        <td>{{$prize_code->code}}</td>
                                         <td>{{$prize_code->is_active==1?'已用':'未用'}}</td>
                                     </tr>
                                     @endforeach
