@@ -25,12 +25,40 @@
                 <img src="{{asset('assets/images/loadingImg.png')}}" class="abs loadingImg" style="display:none;">
                 <div class="loadTxt abs" style="display:none;">LOADING <span>0</span>%</div>
 
+                <div class="page0Img4 bgImg" style="display:none;"></div>
+                <a href="javascript:void(0);" class="abs indexBtn1" onClick="indexStartGame();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn2" onClick="showRule();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn3" onClick="showMyAward();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
+
                 <div class="page0Img3 bgImg" style="display:none;"></div>
             </div>
         </div>
     </div>
 
-    <div class="page0Img4" style="display:none;"></div>
+    <div class="pageRule page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0RuleBg bgImg"></div>
+            	<div class="abs ruleBlock">
+                	<img src="{{asset('assets/images/ruleImg.png')}}">
+                </div>
+                <a href="javascript:void(0);" class="abs indexBtn4" onClick="closeRule();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pageAward page" style="display:none;">
+    	<div class="h832">
+        	<div class="innerDiv">
+				<div class="page0Award page0Award1 bgImg"></div>
+                <img src="{{asset('assets/images/page0AwardQc.png')}}" class="bgImg">
+                <a href="javascript:void(0);" class="abs indexBtn6" onClick="showShareNote();"><img src="{{asset('assets/images/space.gif')}}" width="252" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn5" onClick="closeAward();"><img src="{{asset('assets/images/space.gif')}}" width="103" height="103"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page0Img5 bgImg" style="display:none;"></div>
 
     <div class="page1 page" style="display:none;">
     	<div class="h832">
@@ -50,10 +78,10 @@
 
                 <div class="page1Img4 bgImg" style="display:none;"></div>
                 <div class="page1Img5 bgImg" style="display:none;"></div>
+                <div class="page1Img5b bgImg" style="display:none;"></div>
 
                 <div class="page1Img6 bgImg" style="display:none;"></div>
-                <img src="{{asset('assets/images/page1Img7.png')}}" class="abs page1Img7" style="display:none;">
-                <img src="{{asset('assets/images/space.gif')}}" width="146" height="146" class="abs page1Img8" style="display:none;" onClick="backPano2();">
+                <div class="page1Img7 bgImg" style="display:none;"></div>
             </div>
         </div>
     </div>
@@ -64,7 +92,7 @@
 				<div class="page2Img1 bgImg" style="overflow:visible;">
                 	<img src="{{asset('assets/images/page2Img1.jpg')}}" class="abs page2Img1Img">
                 </div>
-                <img src="{{asset('assets/images/page2Img2.png')}}" class="abs page2Img2" onClick="goGame('{{url("game")}}');" style="display:none;">
+                <img src="{{asset('assets/images/page2Img2.png')}}" class="abs page2Img2" onClick="goGame();" style="display:none;">
             </div>
         </div>
     </div>
@@ -72,7 +100,6 @@
 
 <img src="{{asset('assets/images/logo.png')}}" class="abs logo">
 <a href="javascript:void(0);" class="abs musicBtn"><img src="{{asset('assets/images/musicBtn.png')}}"></a>
-
 @endsection
 @section('scripts')
 <script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>

@@ -60,6 +60,7 @@ function loadingPage1(){
 	var images=[];
 	images.push("assets/images/page0Img3.png");
 	images.push("assets/images/page0Img4.png");
+	images.push("assets/images/page0Img5.png");
 	images.push("assets/images/5th_ave_1.jpg");
 	images.push("assets/images/5th_ave_2.jpg");
 	images.push("assets/images/5th_ave_3.jpg");
@@ -68,9 +69,14 @@ function loadingPage1(){
 	images.push("assets/images/5th_ave_6.jpg");
 	images.push("assets/images/preview.jpg");
 
+	images.push("assets/images/page0RuleBg.png");
+
+	images.push("assets/images/page1Img3.png");
 	images.push("assets/images/page1Img4.png");
 	images.push("assets/images/page1Img5.png");
+	images.push("assets/images/page1Img5b.png");
 	images.push("assets/images/page1Img6.png");
+	images.push("assets/images/page1Img7.png");
 	images.push("assets/images/page2Img1.jpg");
 
     /*图片预加载*/
@@ -91,12 +97,13 @@ function loadingPage1(){
 	}
 
 function goPage1(){
-	$j('.page0Img1').removeClass('page0Img1Act').fadeOut(500);
-	$j('.page0Img2').removeClass('page0Img2Act').fadeOut(500);
+	//$j('.page0Img1').removeClass('page0Img1Act').fadeOut(500);
+	//$j('.page0Img2').removeClass('page0Img2Act').fadeOut(500);
 	$j('.loadingImg').hide();
 	$j('.loadTxt').hide();
-	$j('.page0Img3').addClass('page0Img3Act').show();
-	setTimeout(function(){
+	$j('.page0Img4').fadeIn(500);
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').show();
+	/*setTimeout(function(){
 		$j('.page0Img4').addClass('page0Img4Act').show();
 		$j('.page0').fadeOut(500);
 		setTimeout(function(){
@@ -112,21 +119,75 @@ function goPage1(){
 				$j('.page1Img3').fadeOut(500);
 				},3000);
 			},1000);
-		},4000);
+		},4000);*/
+	}
+
+function indexStartGame(){
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
+	$j('.page0Img1').removeClass('page0Img1Act').fadeOut(500);
+	$j('.page0Img2').removeClass('page0Img2Act').fadeOut(500);
+	$j('.page0Img4').fadeOut(500);
+	$j('.page0Img3').addClass('page0Img3Act').show();
+	setTimeout(function(){
+		$j('.page0Img5').addClass('page0Img5Act').show();
+		$j('.page0Img3').removeClass('page0Img3Act');
+		$j('.page0').delay(500).fadeOut(500);
+
+		setTimeout(function(){
+			$j('.page1').fadeIn(500);
+			hidePanoLayerEle(['compass1']);
+			$j('#pano').fadeIn(1000);
+			$j('.page1Img0').fadeOut(1500);
+			setTimeout(function(){
+				$j('.page0Img4').hide();
+				$j('.page1Img0').hide();
+				$j('#page1Img2').fadeOut(1000);
+				$j('.page1Img3').fadeOut(500);
+				},3000);
+			},1500);
+		},3500);
+	}
+
+function showRule(){
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
+	$j('.pageRule').fadeIn(500);
+	}
+function closeRule(){
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').show();
+	$j('.pageRule').fadeOut(500);
+	}
+
+function showMyAward(){
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
+	$j('.pageAward').fadeIn(500);
+	}
+function closeAward(){
+	$j('.indexBtn1,.indexBtn2,.indexBtn3').show();
+	$j('.pageAward').fadeOut(500);
+	}
+
+function showShareNote(){
+
 	}
 
 function getBottle(){
 	$j('#pano').fadeOut(500);
 	$j('.page1Img4').fadeIn(500);
 	$j('.page1Img5').addClass('page1Img5Act').show();
+	$j('.page1Img5b').delay(500).fadeIn(500).click(function(){
+		goLuopan();
+		});
+	}
 
+function goLuopan(){
+	$j('.page1Img4').fadeOut(500);
+	$j('.page1Img5').hide();
+	$j('.page1Img5b').hide();
+	$j('.page1Img6').fadeIn(500);
+	$j('.page1Img7').delay(2500).fadeIn(500);
 	setTimeout(function(){
-		$j('.page1Img4').fadeOut(500);
-		$j('.page1Img5').hide();
-		$j('.page1Img6').fadeIn(500);
-		$j('.page1Img7').show();
-		$j('.page1Img8').show();
-		},2000);
+		backPano2();
+		},5000);
 	}
 
 var krpano;

@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        $wechat_user = \App\WechatUser::where('open_id', \Request::session()->get('wechat.openid'))->first();
         return view('index');
     }
     public function game()
