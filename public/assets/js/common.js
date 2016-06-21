@@ -558,6 +558,7 @@ function checkDrag2() {
             //文案 击败65-69%
             koNumb = randomNumb(65, 69);
         }
+        //wxData.title = '';
         wxData.desc = '恭喜你击败全国'+koNumb+'%人，率先找到传说中的降暑良策';
         wxShare();
 

@@ -92,7 +92,7 @@
 				<div class="page2Img1 bgImg" style="overflow:visible;">
                 	<img src="{{asset('assets/images/page2Img1.jpg')}}" class="abs page2Img1Img">
                 </div>
-                <img src="{{asset('assets/images/page2Img2.png')}}" class="abs page2Img2" onClick="goGame();" style="display:none;">
+                <img src="{{asset('assets/images/page2Img2.png')}}" class="abs page2Img2" onClick="goGame('{{url("game")}}');" style="display:none;">
             </div>
         </div>
     </div>
