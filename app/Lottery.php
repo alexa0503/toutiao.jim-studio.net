@@ -18,6 +18,6 @@ class Lottery extends Model
     }
     public function prizeInfo()
     {
-        return $this->belongsTo('App\Prize', 'prize');
+        return $this->belongsTo('App\Prize', 'prize_id');
     }
 }

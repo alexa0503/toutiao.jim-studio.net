@@ -17,7 +17,15 @@ class HomeController extends Controller
     public function index()
     {
         $wechat_user = \App\WechatUser::where('open_id', \Request::session()->get('wechat.openid'))->first();
-        return view('index');
+        $lottery = \App\Lottery::where('user_id', $wechat_user->id)->first();
+
+        if( $lottery != null){
+            $prize_id = $lottery->prize_id;
+        }
+        else{
+            $prize_id = 0;
+        }
+        return view('index', ['prize_id'=>$prize_id]);
     }
     public function game()
     {

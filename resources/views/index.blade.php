@@ -28,7 +28,7 @@
                 <div class="page0Img4 bgImg" style="display:none;"></div>
                 <a href="javascript:void(0);" class="abs indexBtn1" onClick="indexStartGame();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
                 <a href="javascript:void(0);" class="abs indexBtn2" onClick="showRule();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
-                <a href="javascript:void(0);" class="abs indexBtn3" onClick="showMyAward();" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
+                <a href="javascript:void(0);" class="abs indexBtn3" onClick="showMyAward({{$prize_id}});" style="display:none;"><img src="{{asset('assets/images/space.gif')}}" width="250" height="52"></a>
 
                 <div class="page0Img3 bgImg" style="display:none;"></div>
             </div>

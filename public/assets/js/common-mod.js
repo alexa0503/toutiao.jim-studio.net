@@ -155,9 +155,15 @@ function closeRule() {
     $j('.pageRule').fadeOut(500);
 }
 
-function showMyAward() {
-    $j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
-    $j('.pageAward').fadeIn(500);
+function showMyAward(prize_id) {
+    if( prize_id > 0 ){
+        $j('.indexBtn1,.indexBtn2,.indexBtn3').hide();
+        $j('.pageAward').fadeIn(500);
+    }
+    else{
+        alert('您还没有中奖哦~');
+    }
+
 }
 
 function closeAward() {
