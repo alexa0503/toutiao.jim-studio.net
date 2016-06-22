@@ -1,14 +1,5 @@
 <?php
-/*
-Route::group(['middleware' => ['web','wechat.oauth']], function () {
-    Route::get('/user', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
-        dd($user);
-    });
-    //Route::get('/', 'HomeController@index');
-});
-Route::any('/wechat', 'WechatController@serve');
-*/
+
 Route::get('/', 'HomeController@index');
 Route::get('/wx/share', function () {
     $url = urldecode(Request::get('url'));
