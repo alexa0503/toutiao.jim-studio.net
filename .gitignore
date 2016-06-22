@@ -1,6 +1,6 @@
-idea/
+.svn/
+.idea/
 Homestead.yaml
-Homestead.json
 
 vendor/
 node_modules/
@@ -12,10 +12,7 @@ app/storage/
 # Laravel 5 & Lumen specific
 bootstrap/cache/
 storage/
-public/storage
-public/qrcodes
 .env.*.php
 .env.php
 .env
-
-app/Helpers/Youku/
+.env.example

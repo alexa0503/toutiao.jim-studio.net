@@ -10,14 +10,12 @@ Route::group(['middleware' => ['web','wechat.oauth']], function () {
 Route::any('/wechat', 'WechatController@serve');
 */
 Route::get('/', 'HomeController@index');
-Route::get('game', 'HomeController@game');
-Route::post('lottery', 'HomeController@lottery');
-Route::get('/wx/share', function(){
+Route::get('/wx/share', function () {
     $url = urldecode(Request::get('url'));
     $options = [
       'app_id' => env('WECHAT_APPID'),
       'secret' => env('WECHAT_SECRET'),
-      'token' => env('WECHAT_TOKEN')
+      'token' => env('WECHAT_TOKEN'),
     ];
     $wx = new EasyWeChat\Foundation\Application($options);
     $js = $wx->js;
@@ -29,14 +27,17 @@ Route::get('/wx/share', function(){
       'link' => env('APP_URL'),
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
     ];
+
     return json_encode(array_merge($share, $config));
 });
-Route::get('logout',function(){
-    Request::session()->set('wechat.openid',null);
+Route::get('logout', function () {
+    Request::session()->set('wechat.openid', null);
+
     return redirect('/');
 });
-Route::get('login',function(){
-    Request::session()->set('wechat.openid','o2-sBj0oOQJCIq6yR7I9HtrqxZcY');
+Route::get('login', function () {
+    Request::session()->set('wechat.openid', 'o2-sBj0oOQJCIq6yR7I9HtrqxZcY');
+
     return redirect('/');
 });
 /*
@@ -55,7 +56,7 @@ Route::get('cms/login', 'Auth\AuthController@getLogin');
 Route::post('cms/login', 'Auth\AuthController@postLogin');
 Route::get('cms/logout', 'Auth\AuthController@logout');
 //屏蔽注册路由
-Route::any('/register', function(){
+Route::any('/register', function () {
 
 });
 //Route::get('/register', 'Auth\AuthController@getRegister');
@@ -75,7 +76,6 @@ Route::get('/cms/photos/export', 'CmsController@photosExport');
 Route::get('/cms/sessions', 'CmsController@sessions');
 Route::get('/cms/session/{id}', 'CmsController@sessions');
 
-
 //抽奖部分管理
 Route::get('/cms/lotteries', 'CmsLotteryController@lotteries');
 Route::get('/cms/prizes', 'CmsLotteryController@prizes');
@@ -94,13 +94,14 @@ Route::any('/wechat/auth', 'WechatController@auth');
 Route::any('/wechat/callback', 'WechatController@callback');
 
 //初始化后台帐号
-Route::get('cms/account/init', function(){
-    if( 0 == \App\User::count()){
+Route::get('cms/account/init', function () {
+    if (0 == \App\User::count()) {
         $user = new \App\User();
         $user->name = 'admin';
         $user->email = 'admin@admin.com';
         $user->password = bcrypt('admin123');
         $user->save();
     }
+
     return redirect('/cms');
 });

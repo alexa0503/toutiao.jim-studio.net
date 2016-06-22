@@ -29,8 +29,7 @@
         },
         "files": [
             "app/Helpers/HttpHelper.php",
-            "app/Helpers/cdn.php",
-            "app/Helpers/Lottery.php"
+            "app/Helpers/cdn.php"
         ]
     },
     "autoload-dev": {
