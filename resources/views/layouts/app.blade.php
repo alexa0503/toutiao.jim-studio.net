@@ -14,7 +14,6 @@
         var wxData = {};
         var wxShareUrl = '{{url("wx/share")}}';
     </script>
-    @yield('headerScripts')
     <!--移动端版本兼容 -->
     <script type="text/javascript">
         var phoneWidth = parseInt(window.screen.width);
@@ -32,12 +31,12 @@
         }
     </script>
     <!--移动端版本兼容 end -->
-    @yield('style')
 </head>
 <body>
 @yield('content')
-@yield('scripts')
+<script src="{{asset('assets/js/jquery-2.1.1.min.js')}}"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="{{asset('assets/js/wx.js')}}"></script>
+@yield('scripts')
 </body>
 </html>
