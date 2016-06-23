@@ -50,5 +50,67 @@ h2{ color:#737373; font-size:18px; line-height:100%; padding:0 0 50px 35px;}
 .zanBlock a{ color:#000; font-size:18px;}
 .zanBlock a img{ vertical-align:-4px;}
 
+.video{ width:592px; height:402px; position:absolute; left:0; top:0;}
 
+.pBlock{ width:570px; padding:20px 0; margin:0 auto; color:#000000; font-size:26px; line-height:36px; text-indent:52px;}
+.vImg1{ left:247px; top:94px; width:135px; height:79px; z-index:10;}
+.vImg2{ left:142px; top:6px; width:319px; height:233px; z-index:10;}
+.vTxt{ width:592px; height:80px; color:#FFF; font-size:24px; line-height:80px; z-index:20; left:0; bottom:0; text-align:center; background:#000;}
+.dTxt{ width:592px; height:402px; left:0; top:0; z-index:30;}
+.dTxt span{ position:absolute; left:592px; font-size:18px; width:200px; color:#FFF; z-index:40;}
+.dTxt span.dLine1{ top:30px; -webkit-animation:dLine 3s 0s linear both;}
+@-webkit-keyframes dLine{
+0%{ -webkit-transform:translate(0,0);}
+100%{ -webkit-transform:translate(-700px,0);}
+}
 
+.guang1{ width:592px; height:375px; margin:20px auto; background:#000000; overflow:hidden;}
+.guang1Img{ position:absolute; left:-10px; top:90px;}
+.guangCover{ left:0; top:0; width:100%; height:100%;}
+
+.guang2{ width:592px; height:375px; margin:20px auto; background:#000000;}
+.guang2Img{ position:absolute; left:227px; top:159px;}
+
+.guang3{ width:592px; height:375px; margin:20px auto; background:#000000;}
+.guang3Img{ position:absolute; left:380px; top:128px;}
+
+.guang4{ width:592px; height:375px; margin:20px auto; background:#000000;}
+.guang4Img{ position:absolute; left:403px; top:135px;}
+
+.bottomBtns{ width:100%; text-align:center; padding:60px 0 80px 0;}
+.bottomBtns a{ margin:0 70px;}
+
+.pageShopImg1{ background:url(../images/shopBg.png) 0 0 no-repeat;}
+.shopTxt{ width:396px; height:42px; border:none; background:none; position:absolute; left:113px; top:417px; color:#000000; font-size:24px; line-height:42px; padding:0 15px;}
+
+/*list*/
+.newLine{ padding:20px; width:600px; border-bottom:1px solid #ddd;}
+.leftFace{ float:left; width:150px;}
+.leftFace img{ width:136px; height:102px;}
+.rightTxt{ float:right; width:445px; text-align:left;}
+
+.bottomBar{ background:url(../images/bottomBar.png) 0 0 no-repeat; width:640px; height:74px; position:fixed; left:50%; bottom:0; margin-left:-320px; border-top:1px solid #ddd;}
+.rTitle{ padding:5px 0 10px 0; font-size:24px; color:#000; line-height:100%;}
+.rTxt{ padding:0; font-size:20px; color:#6f6f6f; line-height:30px;}
+.firstIcon{ left:-20px; top:0;}
+.listTitle{ background:url(../images/listIcon1.png) 20px 18px no-repeat #FFF; padding:18px 0 15px 55px; height:30px; line-height:30px; color:#000; font-size:22px; border-top:1px solid #ddd; border-bottom:2px solid #ddd;}
+.comment{ right:10px; bottom:5px; width:150px; height:20px; line-height:20px; font-size:18px; color:#6f6f6f; text-align:right;}
+.comment img{ vertical-align:-4px;}
+
+.rule{ text-align:left; width:560px; padding:0 0 20px 0; color:#402e29; font-size:20px; line-height:30px; margin:0 auto;}
+.faceBlock{ width:620px; padding:10px 0 40px 20px;}
+.faceOuter img{ float:left; width:75px; height:75px; margin-right:28px; margin-bottom:40px; display:inline-block;}
+
+.ruleBtns{ text-align:center; padding:0 0 40px 0;}
+.ruleBtns a{ margin:0 15px;}
+
+.listFaceImg1{ left:180px; top:75px; -webkit-animation:listFaceImg1 5s 0s linear both infinite;}
+@-webkit-keyframes listFaceImg1{
+0%{ opacity:0;}
+10%{ opacity:1;}
+50%{ opacity:1;}
+60%{ opacity:0;}
+100%{ opacity:0;}
+}
+.listFaceImg2{ left:75px; top:188px; -webkit-animation:listFaceImg1 5s 2s linear both infinite;}
+.listFaceImg3{ left:390px; top:188px; -webkit-animation:listFaceImg1 5s 3s linear both infinite;}

@@ -1,72 +1,55 @@
 @extends('layouts.app')
-@section('content')
-<div class="pageOuter">
-	<div class="page page1">
-    	<div class="h832">
-        	<div class="innerDiv">
-            	<div class="bgImg page1Img1"></div>
-                <input type="file" class="fileBtn" id="uploadBtn" />
+@section('content')<style>
+body{ background:#eee9c6;}
+</style>
+
+<div class="wrapper">
+	<img src="{{asset('assets/images/listTitle1.png')}}">
+
+    <div class="rule">
+    	<img src="{{asset('assets/images/ruleImg.png')}}" style="float:left; padding:0 20px 10px 0;">活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则
+    </div>
+
+    <img src="{{asset('assets/images/listTitle2.png')}}">
+
+    <div class="faceBlock">
+    	<div class="innerDiv">
+        	<div class="faceOuter">
+            	<img src="{{asset('assets/images/face01.png')}}">
+                <img src="{{asset('assets/images/face02.png')}}">
+                <img src="{{asset('assets/images/face03.png')}}">
+                <img src="{{asset('assets/images/face04.png')}}">
+                <img src="{{asset('assets/images/face05.png')}}">
+                <img src="{{asset('assets/images/face06.png')}}">
+                <img src="{{asset('assets/images/face07.png')}}">
+                <img src="{{asset('assets/images/face08.png')}}">
+                <img src="{{asset('assets/images/face09.png')}}">
+                <img src="{{asset('assets/images/face10.png')}}">
+                <img src="{{asset('assets/images/face11.png')}}">
+                <img src="{{asset('assets/images/face12.png')}}">
+                <img src="{{asset('assets/images/face13.png')}}">
+                <img src="{{asset('assets/images/face14.png')}}">
+                <img src="{{asset('assets/images/face15.png')}}">
+                <img src="{{asset('assets/images/face16.png')}}">
+                <img src="{{asset('assets/images/face17.png')}}">
+                <img src="{{asset('assets/images/face18.png')}}">
             </div>
+            <img src="{{asset('assets/images/listFaceImg1.png')}}" class="abs listFaceImg1">
+            <img src="{{asset('assets/images/listFaceImg2.png')}}" class="abs listFaceImg2">
+            <img src="{{asset('assets/images/listFaceImg3.png')}}" class="abs listFaceImg3">
         </div>
     </div>
 
-    <div class="page page2" style="display:none;">
-    	<div class="h832">
-        	<div class="innerDiv">
-            	<div class="preImg" id="preImg">
-                    <div class="innerDiv">
-                        <img src="" class="abs upBtnImg upLoadImg" style="display:none;" id="upBtnImg">
-                        <img src="" class="abs upLoadImg" style="display:none;" id="preview"/>
-                        <img src="" class="abs upLoadImg" style="display:none;" id="localImag"/>
-                    </div>
-                </div>
-                <div class="bgImg page2Img1"></div>
-                <div id="touchBlock"></div>
-                <a href="javascript:void(0);" class="abs btn1" onClick="backPage1();"><img src="{{asset('assets/images/btn1.png')}}"></a>
-                <a href="javascript:void(0);" class="abs btn2" onClick="goPage3();"><img src="{{asset('assets/images/btn2.png')}}"></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="page page3" style="display:none;">
-    	<div class="h832">
-        	<div class="innerDiv">
-                <div class="bgImg page3Img1"></div>
-                <input type="text" class="titleTxt" maxlength="10">
-                <a href="javascript:void(0);" class="abs btn1" onClick="backPage2();"><img src="{{asset('assets/images/btn1.png')}}"></a>
-                <a href="javascript:void(0);" class="abs btn2" onClick="goPage4('{{url("create")}}');"><img src="{{asset('assets/images/btn3.png')}}"></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="page page4" style="display:none;">
-    	<div class="h832">
-        	<div class="innerDiv">
-                <div class="bgImg page4Img1"></div>
-                <div class="ajaxLoading"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page page5" style="display:none;">
-    	<div class="h832">
-        	<div class="innerDiv">
-                <div class="bgImg page5Img1"></div>
-            </div>
-        </div>
+    <div class="ruleBtns">
+    	<a href="{{url('join')}}"><img src="{{asset('assets/images/btnIndex1.png')}}"></a>
+        <a href="{{url('join')}}"><img src="{{asset('assets/images/btnIndex2.png')}}"></a>
     </div>
 </div>
-
-<canvas id="guoduCanvas" style="display:none;"></canvas>
-<img src="" id="endImg" style="display:none;">
 
 @endsection
 @section('scripts')
 <script>
 $(function(){
-	btnSelImg();
-});
-$(document).ready(function() {
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

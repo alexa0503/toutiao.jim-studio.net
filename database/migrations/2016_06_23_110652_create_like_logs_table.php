@@ -13,9 +13,9 @@ class CreateLikeLogsTable extends Migration
         Schema::create('like_logs', function (Blueprint $table) {
             //$table->increments('id');
 
-            $table->integer('info_id')->unique()->unsigned();
+            $table->integer('info_id')->unsigned();
             $table->foreign('info_id')->references('id')->on('infos');
-            $table->integer('voter_id')->unique()->unsigned();
+            $table->integer('voter_id')->unsigned();
             $table->foreign('voter_id')->references('id')->on('wechat_users');
             $table->primary(['info_id', 'voter_id']);
             $table->string('ip_address', 45)->nullable();

@@ -17,12 +17,16 @@ class HomeController extends Controller
     //首页
     public function index()
     {
+        return view('index');
+    }
+    public function join()
+    {
         $count = \App\Info::where('id', $this->wechat_user['id'])->count();
         if ($count > 0) {
             return redirect(url('info', ['id' => $this->wechat_user['id']]));
         }
 
-        return view('index');
+        return view('join');
     }
     public function info($id)
     {
@@ -32,6 +36,14 @@ class HomeController extends Controller
         }
 
         return view('info', ['info' => $info]);
+    }
+    public function posts()
+    {
+        $collcetion = \App\Post::all();
+        $random = $collection->random(3);
+        $random->all();
+
+        return view('posts', ['posts' => $posts]);
     }
     //生成图片信息
     public function create()
@@ -44,9 +56,9 @@ class HomeController extends Controller
         $data = str_replace('data:image/png;base64,', '', $data);
         $data = str_replace(' ', '+', $data);
         $data_image = base64_decode($data);
-
-        $image_path = date('Ymd').uniqid().'.png';
-        file_put_contents(public_path('uploads/'.$image_path), $data_image);
+        mkdir(public_path('uploads/'.date('Ymd')), 0777);
+        $image_path = 'uploads/'.date('Ymd').'/'.uniqid().'.png';
+        file_put_contents(public_path($image_path), $data_image);
 
         $like_num = \Request::session()->get('scan.like_num') ?: 0;
         $info = new \App\Info();
@@ -61,12 +73,33 @@ class HomeController extends Controller
         $info->save();
         \Request::session()->set('scan.like_num', null);
 
-        return ['ret' => 0, 'msg' => '', 'url' => url('info', ['id' => $info->id])];
+        return ['ret' => 0, 'msg' => '', 'desc' => $info->title, 'url' => url('info', ['id' => $this->wechat_user['id']])];
     }
     //点赞
     public function like($id)
     {
         $result = ['ret' => 0, 'msg' => ''];
+        $user_id = \Request::session()->get('wechat.id');
+        $count = \App\LikeLog::where('info_id', $id)->where('voter_id', $user_id)->count();
+        if ($user_id == $id) {
+            $result = ['ret' => 1001, 'msg' => '不能给自己点赞喔'];
+        } elseif ($count == 0) {
+            $result['like_num'] = \DB::transaction(function () use ($id, $user_id) {
+                $info = \App\Info::find($id);
+                $info->like_num += 1;
+                $info->save();
+                $log = new \App\LikeLog();
+                $log->info_id = $id;
+                $log->voter_id = $user_id;
+                $log->created_at = Carbon::now();
+                $log->ip_address = \Request::getClientIp();
+                $log->save();
+
+                return $info->like_num;
+            });
+        } else {
+            $result = ['ret' => 1002, 'msg' => '您已经点过赞了'];
+        }
 
         return $result;
     }

@@ -14,16 +14,6 @@ function randomNumb(minNumb, maxNumb) {
     return rn;
 }
 
-var wHeight;
-$(function() {
-    wHeight = $(window).height();
-    if (wHeight < 832) {
-        wHeight = 832;
-    }
-    $('.pageOuter,.page').height(wHeight);
-    $('.h832').css('padding-top', (wHeight - 832) / 2 + 'px');
-});
-
 /*图片上传*/
 //全局变量
 var isSelectedImg = false; //是否选择图片
@@ -288,6 +278,8 @@ function goPage3() {
     $('.page3').fadeIn(500);
 }
 
+var canSubmit1 = true;
+
 function goPage4(url) {
     var iTitle = $.trim($('.titleTxt').val());
     if (iTitle == '') {
@@ -295,6 +287,7 @@ function goPage4(url) {
         return false;
     }
     //ajax提交
+    canSubmit1 = false;
     //图片 id=endImg
     $.ajax(url, {
         data: {
@@ -304,20 +297,26 @@ function goPage4(url) {
         method: 'post',
         success: function(json) {
             goPage5();
-            if( json.ret == 0){
+            if (json.ret == 0) {
                 wxData.link = json.url;
+                wxData.desc = json.desc;
                 wxShare();
+            } else {
+                backPage3();
+                canSubmit1 = true;
             }
         },
         error: function(xhr) {
             alert('上传失败');
             backPage3();
+            canSubmit1 = true;
         },
         beforeSend: function() {
             $('.page3').fadeOut(500);
             $('.page4').fadeIn(500);
         }
     });
+
 }
 
 function backPage2() {
@@ -368,4 +367,56 @@ function mixPhoto() {
         $('#endImg').attr('src', drawCanvas.toDataURL("image/png"));
     }
     tImg.src = $('#preview').attr('src');
+}
+
+function voteThis(url) {
+    var vNumb = parseInt($('.zanBlock span').html());
+    $.ajax(url, {
+        method: 'post',
+        success: function(json) {
+            if(json.ret == 0){
+                $('.zanBlock span').html(json.like_num);
+            }
+            else{
+                alert(json.msg);
+            }
+        },
+        error: function(xhr){
+            alert('点赞失败，请稍后重试')
+        }
+    })
+    vNumb++;
+
+}
+
+var canSubmit2 = true;
+
+function shopSubmit(url) {
+    var shopPrice = $.trim($('.shopTxt').val());
+    if (shopPrice == '') {
+        alert('请输入消费金额');
+        return false;
+    }
+    //提交
+    canSubmit2 = false;
+    $.ajax(url, {
+        data: {
+            price: shopPrice
+        },
+        method: 'post',
+        success: function(json) {
+            if(json.ret == 0){
+                location.href=json.url;
+            }
+            else{
+                alert(json.msg);
+            }
+        },
+        error: function(xhr){
+            canSubmit2=true;
+        }
+    })
+
+    //提交失败
+    //canSubmit2=true;
 }

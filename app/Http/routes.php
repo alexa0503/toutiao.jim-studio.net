@@ -2,8 +2,9 @@
 //路由控制
 Route::get('/', 'HomeController@index');
 Route::get('scan', 'HomeController@scan');
+Route::get('join', 'HomeController@join');
 Route::post('create', 'HomeController@create');
-Route::get('like/{id}', 'HomeController@like');
+Route::post('like/{id}', 'HomeController@like');
 Route::get('info/{id}', 'HomeController@info');
 Route::get('wx/share', function () {
     $url = urldecode(Request::get('url'));
@@ -19,19 +20,24 @@ Route::get('wx/share', function () {
     $share = [
       'title' => env('WECHAT_SHARE_TITLE'),
       'desc' => env('WECHAT_SHARE_DESC'),
-      'link' => env('APP_URL'),
+      'link' => url('/'),
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
     ];
 
     return json_encode(array_merge($share, $config));
 });
 Route::get('logout', function () {
-    Request::session()->set('wechat.openid', null);
+    Request::session()->set('wechat', null);
 
     return redirect('/');
 });
 Route::get('login', function () {
-    Request::session()->set('wechat.openid', 'o2-sBj0oOQJCIq6yR7I9HtrqxZcY');
+    $session = Request::session();
+    $wechat_user = \App\WechatUser::find(1);
+    $session->set('wechat.id', $wechat_user->id);
+    $session->set('wechat.openid', $wechat_user->open_id);
+    $session->set('wechat.nickname', json_decode($wechat_user->nick_name));
+    $session->set('wechat.headimg', $wechat_user->head_img);
 
     return redirect('/');
 });
