@@ -7,31 +7,28 @@ class CreateWechatUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        if (!Schema::hasTable('wechat_users'))
+        if (!Schema::hasTable('wechat_users')) {
             Schema::create('wechat_users', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('open_id',60);
+                $table->string('open_id', 60);
                 $table->unique('open_id');
-                $table->string('nick_name',60);
-                $table->string('head_img',200);
+                $table->string('nick_name', 60);
+                $table->string('head_img', 200);
                 $table->tinyInteger('gender');
-                $table->string('country',60);
-                $table->string('province',60);
-                $table->string('city',60);
-                $table->dateTime('create_time');
-                $table->string('create_ip',120);
+                $table->string('country', 60);
+                $table->string('province', 60);
+                $table->string('city', 60);
+                $table->string('ip_address', 45)->nullable();
+                $table->timestamps();
             });
+        }
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

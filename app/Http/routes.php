@@ -1,7 +1,11 @@
 <?php
-
+//路由控制
 Route::get('/', 'HomeController@index');
-Route::get('/wx/share', function () {
+Route::get('scan', 'HomeController@scan');
+Route::post('create', 'HomeController@create');
+Route::get('like/{id}', 'HomeController@like');
+Route::get('info/{id}', 'HomeController@info');
+Route::get('wx/share', function () {
     $url = urldecode(Request::get('url'));
     $options = [
       'app_id' => env('WECHAT_APPID'),

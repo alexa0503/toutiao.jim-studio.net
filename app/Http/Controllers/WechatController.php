@@ -43,11 +43,13 @@ class WechatController extends Controller
             $wechat_user = \App\WechatUser::where('open_id', $openid);
             if ($wechat_user->count() > 0) {
                 $wechat = $wechat_user->first();
+                $wechat->updated_at = Carbon::now();
             } else {
                 $wechat = new \App\WechatUser();
                 $wechat->open_id = $openid;
-                $wechat->create_time = Carbon::now();
-                $wechat->create_ip = $request->getClientIp();
+                $wechat->created_at = Carbon::now();
+                $wechat->ip_address = $request->getClientIp();
+                $wechat->updated_at = null;
             }
             $wechat->gender = $user_data->sex;
             $wechat->head_img = $user_data->headimgurl;
@@ -57,7 +59,10 @@ class WechatController extends Controller
             $wechat->city = $user_data->city;
             //$wechat->options = $options;
             $wechat->save();
+            $request->session()->set('wechat.id', $wechat->id);
             $request->session()->set('wechat.openid', $openid);
+            $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
+            $request->session()->set('wechat.headimg', $wechat->head_img);
 
             return redirect('/');
         }
