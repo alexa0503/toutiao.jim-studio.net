@@ -255,10 +255,11 @@ CanvasVideoPlayer.prototype.loop = function() {
 	// If we are at the end of the video stop
 	if (this.video.currentTime >= this.video.duration) {
 		this.playing = false;
-		// this.video.currentTime = 0;
 		// 播放完毕
 		//alert('over');
+		this.video.currentTime = 0;
 		clearInterval(danmuTime);
+		$('.playBtn').show();
 		isPlaying=false;
 		//showBtn();
 	}

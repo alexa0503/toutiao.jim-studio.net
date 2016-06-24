@@ -37,7 +37,7 @@ body{ background:#FFF;}
         </div>
     </div>
     <div style="width:592px; padding:5px 0 0 0; text-align:right;">
-    	<a href="javascript:void(0);" onClick="controlDm();"><img src="{{asset('assets/images/dmOn.png')}}" class="dmOn"><img src="{{asset('assets/images/dmOff.png')}}" class="dmOff" style="display:none;"></a>
+    	<a href="javascript:void(0);" onClick="controlDm();"><img src="{{asset('assets/images/dmOn.png')}}" class="dmOn" width="90"><img src="{{asset('assets/images/dmOff.png')}}" class="dmOff" style="display:none;" width="90"></a>
     </div>
 
     <p class="pBlock p1" style="padding-top:40px;">
