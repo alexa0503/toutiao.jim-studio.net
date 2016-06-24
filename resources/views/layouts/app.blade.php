@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/common.css')}}">
     <script>
         var wxData = {};
-        wxData.title = '“{{Request::session()->get("wechat.nickname")}}”接受采访，说了一句话震惊了所有的人';
         var wxShareUrl = '{{url("wx/share")}}';
     </script>
     <script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>

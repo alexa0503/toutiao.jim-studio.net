@@ -19,7 +19,7 @@ Route::get('wx/share', function () {
     $js->setUrl($url);
     $config = json_decode($js->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'), false), true);
     $share = [
-      'title' => env('WECHAT_SHARE_TITLE'),
+      'title' => '“'.Request::session()->get('wechat.nickname').'”'.env('WECHAT_SHARE_TITLE'),
       'desc' => env('WECHAT_SHARE_DESC'),
       'link' => url('/'),
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
