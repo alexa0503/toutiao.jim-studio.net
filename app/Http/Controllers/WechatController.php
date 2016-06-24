@@ -10,8 +10,8 @@ class WechatController extends Controller
 {
     public function auth(Request $request)
     {
-        if (null == $request->get('url')) {
-            $request->session()->set('wechat.callback_url', urlencode($request->get('url')));
+        if (null != $request->get('url')) {
+            $request->session()->set('wechat.callback_url', urldecode($request->get('url')));
         }
         $app_id = env('WECHAT_APPID');
         $callback_url = $request->getUriForPath('/wechat/callback');
