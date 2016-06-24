@@ -64,7 +64,7 @@ class WechatController extends Controller
             $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
             $request->session()->set('wechat.headimg', $wechat->head_img);
 
-            return redirect('/');
+            return redirect($request->session()->get('wechat.redirect_uri'));
         }
     }
 }
