@@ -59,6 +59,8 @@ $(function(){
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	    }
 	});
+	wxData.link = '{{url("posts",["id"=>$info->id])}}';
+	wxData.desc = '{{$info->title}}';
 	wxShare();
 });
 </script>
