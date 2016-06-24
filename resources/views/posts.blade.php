@@ -21,8 +21,10 @@ body{ background:#FFF;}
             </a>
         </div>
     </div>
-	@foreach ($posts as $key => $post)
-	@if($key == 4)
+	<?php $i = 0; ?>
+	@foreach ($posts as $post)
+	<?php ++$i; ?>
+	@if ($i == 3)
 	<div class="listTitle">
     	八卦TOP10
     </div>

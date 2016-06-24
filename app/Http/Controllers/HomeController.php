@@ -68,7 +68,8 @@ class HomeController extends Controller
     {
         $info = \App\Info::find($id);
         $collection = \App\Post::all();
-        $random = $collection->random(6);
+        $num = count($collection) < 10 ? count($collection) : 10;
+        $random = $collection->random($num);
         $posts = $random->all();
 
         return view('posts', ['posts' => $posts, 'info' => $info]);
