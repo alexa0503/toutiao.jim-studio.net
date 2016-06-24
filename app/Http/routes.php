@@ -77,20 +77,10 @@ Route::get('/cms/photos', 'CmsController@photos');
 Route::get('/cms/photos/export', 'CmsController@photosExport');
 Route::get('/cms/sessions', 'CmsController@sessions');
 Route::get('/cms/session/{id}', 'CmsController@sessions');
+Route::get('/cms/infos', 'CmsController@infos');
 
-//抽奖部分管理
-Route::get('/cms/lotteries', 'CmsLotteryController@lotteries');
-Route::get('/cms/prizes', 'CmsLotteryController@prizes');
-Route::post('/cms/prize/update/{id}', 'CmsLotteryController@prizeUpdate');//
-Route::get('/cms/lottery/configs', 'CmsLotteryController@lotteryConfigs');
-Route::post('cms/lottery/config/update/{id}', 'CmsLotteryController@lotteryConfigUpdate');
-Route::post('cms/lottery/config/add', 'CmsLotteryController@lotteryConfigAdd');
-Route::get('cms/prize/configs', 'CmsLotteryController@prizeConfigs');
-Route::get('cms/prize/config/update/{id}', 'CmsLotteryController@prizeConfig');
-Route::post('cms/prize/config/update/{id}', 'CmsLotteryController@prizeConfigUpdate');
-Route::get('cms/prize/config/add', 'CmsLotteryController@prizeConfigAdd');
-Route::post('cms/prize/config/add', 'CmsLotteryController@prizeConfigStore');
-Route::get('cms/prize/codes', 'CmsLotteryController@prizeCodes');
+//新闻
+Route::resource('cms/post', 'PostController');
 //wechat auth
 Route::any('/wechat/auth', 'WechatController@auth');
 Route::any('/wechat/callback', 'WechatController@callback');

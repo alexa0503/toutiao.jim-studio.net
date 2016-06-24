@@ -20,27 +20,14 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body">
-                                <!--
-                                <div class="row">
-                                    <div class="col-md-2 col-xs-12 ">
-                                        <div class="dataTables_length" id="responsive-datatables_length"><label><span><select name="responsive-datatables_length" aria-controls="responsive-datatables" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></span></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10 col-xs-12">
-                                        <div id="responsive-datatables_filter" class="dataTables_filter">
-                                            <form>
-                                                <label><input type="search" class="form-control input-sm" placeholder="请输入手机号" aria-controls="responsive-datatables" name="mobile" value="{{Request::get('mobile')}}"></label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>-->
                                 <table id="basic-datatables" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
                                         <th>微信昵称</th>
-                                        <th>姓名</th>
-                                        <th>手机</th>
-                                        <th>地址</th>
+                                        <th>标题</th>
+                                        <th>上传图片</th>
+                                        <th>点赞数</th>
+                                        <th>是否扫码</th>
                                         <th>创建时间</th>
                                         <th>创建IP</th>
                                     </tr>
@@ -49,11 +36,12 @@
                                     @foreach ($infos as $info)
                                     <tr>
                                         <td><a href="{{url('cms/wechat',['id'=>$info->user->id])}}">{{ json_decode($info->user->nick_name) }}</a></td>
-                                        <td>{{ $info->name }}</td>
-                                        <td>{{ $info->mobile }}</td>
-                                        <td>{{ $info->address }}</td>
-                                        <td>{{ $info->created_time }}</td>
-                                        <td>{{ $info->created_ip }}</td>
+                                        <td>{{ $info->title }}</td>
+                                        <td><a href="{{ asset($info->image_path) }}" target="_blank"><img src="{{ asset($info->image_path) }}" style="max-width:200px;max-height:200px;" class="img-polaroid" /></a></td>
+                                        <td>{{ $info->like_num }}</td>
+                                        <td>{{ $info->is_scan == 1 ? '是' : '否' }}</td>
+                                        <td>{{ $info->created_at }}</td>
+                                        <td>{{ $info->ip_address }}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

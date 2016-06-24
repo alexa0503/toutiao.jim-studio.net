@@ -88,9 +88,10 @@ class HomeController extends Controller
         if (false == file_exists(public_path('uploads/'.date('Ymd')))) {
             @mkdir(public_path('uploads/'.date('Ymd')), 0777);
         }
-        $image_path = 'uploads/'.date('Ymd').'/'.uniqid().'.png';
-        file_put_contents(public_path($image_path), $data_image);
-
+        $file_name = uniqid().'.png';
+        $image_path = 'uploads/'.date('Ymd').'/'.$file_name;
+        $result = \Storage::put('uploads/'.date('Ymd').'/'.$file_name, $data_image);
+        //file_put_contents(public_path($image_path), $data_image);
         $like_num = \Request::session()->get('scan.like_num') ?: 0;
         $info = new \App\Info();
         $info->id = $this->wechat_user['id'];

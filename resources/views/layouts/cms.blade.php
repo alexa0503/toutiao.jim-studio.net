@@ -92,6 +92,9 @@
 <script src="{{asset('assets/cms/plugins/charts/sparklines/jquery.sparkline.js')}}"></script>
 <script src="{{asset('assets/cms/js/jquery.dynamic.js')}}"></script>
 <script src="{{asset('assets/cms/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/bootstrap-filestyle/bootstrap-filestyle.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery.form.js')}}"></script>
+
 <script src="{{asset('assets/cms/js/main.js')}}"></script>
 <script src="{{asset('assets/cms/js/pages/blank.js')}}"></script>
 @yield('scripts')
@@ -104,8 +107,14 @@
         });
         $.get('/cms/user/logs',function (data) {
             $('#userLogs').html(data);
-        })
+        });
+        $('.side-nav .nav li ul li').each(function(){
+            if( $(this).find('a').hasClass('active')){
+                $(this).parent('ul').addClass('show');
+                $(this).parent('ul').parent('li').find('a').eq(0).addClass('expand').addClass('active-state');
+            }
 
+        });
     })
 </script>
 </body>

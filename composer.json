@@ -29,7 +29,8 @@
         },
         "files": [
             "app/Helpers/HttpHelper.php",
-            "app/Helpers/cdn.php"
+            "app/Helpers/cdn.php",
+            "app/Helpers/Menu.php"
         ]
     },
     "autoload-dev": {
