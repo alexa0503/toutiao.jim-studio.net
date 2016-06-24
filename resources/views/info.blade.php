@@ -25,8 +25,8 @@ body{ background:#FFF;}
                 <div class="video-timeline-passed js-timeline-passed">
                 </div>
             </div>
-            <img src="{{asset('assets/images/img1.png')}}" class="abs vImg1" style="display:none;">
-            <img src="{{asset('assets/images/img1.png')}}" class="abs vImg2" style="display:none;">
+            <img src="{{asset($info->image_path)}}" class="abs vImg1" style="display:none;">
+            <img src="{{asset($info->image_path)}}" class="abs vImg2" style="display:none;">
             <div class="abs vTxt">字幕字幕</div>
             <div class="abs dTxt">
             	<div class="innerDiv">
@@ -47,7 +47,7 @@ body{ background:#FFF;}
     <div class="guang1">
     	<div class="innerDiv">
         	<div class="guang1Img">
-            	<img src="{{asset('assets/images/img1.png')}}" width="450" style="-webkit-transform:perspective(450px) rotateY(45deg);">
+            	<img src="{{asset($info->image_path)}}" width="450" style="-webkit-transform:perspective(450px) rotateY(45deg);">
             </div>
         	<img src="{{asset('assets/images/shareImg1.png')}}" class="abs guangCover">
         </div>
@@ -56,7 +56,7 @@ body{ background:#FFF;}
     <div class="guang2">
     	<div class="innerDiv">
         	<div class="guang2Img">
-            	<img src="{{asset('assets/images/img1.png')}}" width="212">
+            	<img src="{{asset($info->image_path)}}" width="212">
             </div>
         	<img src="{{asset('assets/images/shareImg2.png')}}" class="abs guangCover">
         </div>
@@ -65,7 +65,7 @@ body{ background:#FFF;}
     <div class="guang3">
     	<div class="innerDiv">
         	<div class="guang3Img">
-            	<img src="{{asset('assets/images/img1.png')}}" width="185" style="-webkit-transform:rotate(-2deg);">
+            	<img src="{{asset($info->image_path)}}" width="185" style="-webkit-transform:rotate(-2deg);">
             </div>
         	<img src="{{asset('assets/images/shareImg3.png')}}" class="abs guangCover">
         </div>
@@ -74,7 +74,7 @@ body{ background:#FFF;}
     <div class="guang4">
     	<div class="innerDiv">
         	<div class="guang4Img">
-            	<img src="{{asset('assets/images/img1.png')}}" width="180" style="-webkit-transform:rotate(-6deg);-webkit-filter:grayscale(1);">
+            	<img src="{{asset($info->image_path)}}" width="180" style="-webkit-transform:rotate(-6deg);-webkit-filter:grayscale(1);">
             </div>
         	<img src="{{asset('assets/images/shareImg4.png')}}" class="abs guangCover">
         </div>
@@ -94,7 +94,7 @@ body{ background:#FFF;}
 @section('scripts')
 <script>
 var userName = '{{json_decode($info->user->nick_name)}}';
-var userImg = '{{url($info->image_path)}}';
+var userImg = '{{asset($info->image_path)}}';
 var userTitle = '{{$info->title}}';
 var isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') >= 0;
 var isAndroid = navigator.userAgent.toLowerCase().indexOf('android') >= 0;
@@ -168,7 +168,7 @@ var cImg=new Image();
 cImg.onload=function(){
 canDrawImg=true;
 }
-cImg.src="{{asset('assets/images/img1.png')}}";
+cImg.src="{{asset($info->image_path)}}";
 
 $(function(){
 	$.ajaxSetup({
