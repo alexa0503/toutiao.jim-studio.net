@@ -103,7 +103,7 @@ class HomeController extends Controller
         $info->save();
         \Request::session()->set('scan.like_num', null);
 
-        return ['ret' => 0, 'msg' => '', 'desc' => $info->title, 'url' => url('posts', ['id' => $this->wechat_user['id']])];
+        return ['ret' => 0, 'msg' => '', 'title' => $info->title, 'url' => url('posts', ['id' => $this->wechat_user['id']])];
     }
     //点赞
     public function like($id)

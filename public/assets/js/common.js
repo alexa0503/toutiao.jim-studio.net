@@ -299,7 +299,7 @@ function goPage4(url) {
             goPage5();
             if (json.ret == 0) {
                 wxData.link = json.url;
-                wxData.desc = json.desc;
+                wxData.title = json.title;
                 wxShare();
             } else {
                 backPage3();
