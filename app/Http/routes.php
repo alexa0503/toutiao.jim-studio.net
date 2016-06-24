@@ -84,6 +84,7 @@ Route::resource('cms/post', 'PostController');
 //wechat auth
 Route::any('wechat/auth', 'WechatController@auth');
 Route::any('wechat/callback', 'WechatController@callback');
+Route::any('wechat/token', 'WechatController@token');
 
 //初始化后台帐号
 Route::get('cms/account/init', function () {

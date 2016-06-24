@@ -75,4 +75,17 @@ class WechatController extends Controller
             }
         }
     }
+    public function token()
+    {
+        $options = [
+          'app_id' => env('WECHAT_APPID'),
+          'secret' => env('WECHAT_SECRET'),
+          'token' => env('WECHAT_TOKEN'),
+        ];
+        $wx = new \EasyWeChat\Foundation\Application($options);
+        $accessToken = $wx->access_token;
+        $token = $accessToken->getToken();
+
+        return $token;
+    }
 }
