@@ -376,13 +376,14 @@ function voteThis(url) {
         success: function(json) {
             if(json.ret == 0){
                 $('.zanBlock span').html(json.like_num);
+                $('.zanBlock').find('a').unbind('click');
             }
             else{
-                alert(json.msg);
+                //alert(json.msg);
             }
         },
         error: function(xhr){
-            alert('点赞失败，请稍后重试')
+            //alert('点赞失败，请稍后重试')
         }
     })
     vNumb++;

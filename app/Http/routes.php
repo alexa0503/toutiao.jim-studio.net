@@ -1,11 +1,12 @@
 <?php
 //路由控制
 Route::get('/', 'HomeController@index');
-Route::get('scan', 'HomeController@scan');
+Route::any('scan', 'HomeController@scan');
 Route::get('join', 'HomeController@join');
 Route::post('create', 'HomeController@create');
 Route::post('like/{id}', 'HomeController@like');
 Route::get('info/{id}', 'HomeController@info');
+Route::get('posts/{id}', 'HomeController@posts');
 Route::get('wx/share', function () {
     $url = urldecode(Request::get('url'));
     $options = [

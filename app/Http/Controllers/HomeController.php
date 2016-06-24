@@ -17,7 +17,18 @@ class HomeController extends Controller
     //首页
     public function index()
     {
-        return view('index');
+        $count = \App\Info::where('id', $this->wechat_user['id'])->count();//
+        $collection = \App\Info::with('user')
+            ->where('id', '!=', $this->wechat_user['id'])
+            ->orderBy('created_at', 'DESC')
+            ->take(18)
+            ->get();
+        $infos = $collection->map(function ($item) {
+            return [$item->id, $item->user->head_img];
+        });
+        //var_dump($head_img);
+
+        return view('index', ['count' => $count, 'infos' => $infos]);
     }
     public function join()
     {
@@ -34,16 +45,23 @@ class HomeController extends Controller
         if (null == $info) {
             return redirect('/');
         }
+        $session = \Request::session();
+        if (null != $session->get('scan.like_num') && $info->is_scan == 0) {
+            $info->like_num += $session->get('scan.like_num');
+            $info->is_scan = 1;
+            $info->save();
+        }
 
         return view('info', ['info' => $info]);
     }
-    public function posts()
+    public function posts($id)
     {
-        $collcetion = \App\Post::all();
-        $random = $collection->random(3);
-        $random->all();
+        $info = \App\Info::find($id);
+        $collection = \App\Post::all();
+        $random = $collection->random(6);
+        $posts = $random->all();
 
-        return view('posts', ['posts' => $posts]);
+        return view('posts', ['posts' => $posts, 'info' => $info]);
     }
     //生成图片信息
     public function create()
@@ -109,7 +127,7 @@ class HomeController extends Controller
         if (\Request::method() == 'GET') {
             return view('scan');
         } else {
-            $result = ['ret' => 0, 'msg' => ''];
+            $result = ['ret' => 0, 'msg' => '', 'url' => url('info', ['id' => \Request::session()->get('wechat.id')])];
             $price = (int) \Request::input('price');
             $scan_like_num = 10;
             if ($price > 500 && $price <= 1000) {

@@ -8,7 +8,12 @@ body{ background:#FFF;}
 	<h1>{{$info->title}}</h1>
     <h2>{{$info->created_at}} 罗莱生活</h2>
     <div class="abs zanBlock">
-    	<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn3.png')}}"> <span>{{$info->like_num}}</span></a>
+		@if ($info->id == Request::session()->get('wechat.id'))
+		<img src="{{asset('assets/images/shareBtn3.png')}}"> <span>{{$info->like_num}}</span>
+		@else
+		<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn3.png')}}"> <span>{{$info->like_num}}</span></a>
+		@endif
+
     </div>
     <div class="videoBlock">
     	<div class="innerDiv">
@@ -76,7 +81,12 @@ body{ background:#FFF;}
     </div>
 
     <div class="bottomBtns">
-    	<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn1.png')}}"></a>
+		@if ($info->id == Request::session()->get('wechat.id'))
+		<img src="{{asset('assets/images/shareBtn1.png')}}">
+		@else
+		<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn1.png')}}"></a>
+		@endif
+
         <a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
     </div>
 </div>

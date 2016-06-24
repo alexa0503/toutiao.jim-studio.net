@@ -14,6 +14,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 60);
             $table->string('description', 200);
+            $table->string('image_path', 100);
+            $table->integer('like_num');
             $table->timestamps();
         });
     }
