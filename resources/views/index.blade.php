@@ -18,6 +18,24 @@ body{ background:#eee9c6;}
 			@foreach ($infos as $info)
 			<a href="{{url('info',['id'=>$info[0]])}}"><img src="{{$info[1]}}"></a>
 			@endforeach
+			<img src="images/face01.png">
+			<img src="images/face02.png">
+			<img src="images/face03.png">
+			<img src="images/face04.png">
+			<img src="images/face05.png">
+			<img src="images/face06.png">
+			<img src="images/face07.png">
+			<img src="images/face08.png">
+			<img src="images/face09.png">
+			<img src="images/face10.png">
+			<img src="images/face11.png">
+			<img src="images/face12.png">
+			<img src="images/face13.png">
+			<img src="images/face14.png">
+			<img src="images/face15.png">
+			<img src="images/face16.png">
+			<img src="images/face17.png">
+			<img src="images/face18.png">
             </div>
             <img src="{{asset('assets/images/listFaceImg1.png')}}" class="abs listFaceImg1">
             <img src="{{asset('assets/images/listFaceImg2.png')}}" class="abs listFaceImg2">
