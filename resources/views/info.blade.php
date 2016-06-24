@@ -31,7 +31,7 @@ body{ background:#FFF;}
             <div class="abs vTxt">我们来看下一条新闻</div>
             <div class="abs dTxt">
             	<div class="innerDiv">
-                	
+
                 </div>
             </div>
         </div>
@@ -89,9 +89,10 @@ body{ background:#FFF;}
 		<img src="{{asset('assets/images/shareBtn1.png')}}">
 		@else
 		<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn1.png')}}"></a>
+		<a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
 		@endif
 
-        <a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
+
     </div>
 </div>
 @endsection
@@ -226,7 +227,7 @@ function updateZimu(){
 		$('.vTxt').html(zimu[7]);
 		}
 	}
-	
+
 var danmuLen=danmu.length-1;
 var danmuStep=0;
 var danmuStyle=1;
@@ -256,7 +257,7 @@ function danmuGo(){
 		$('.dTxt .innerDiv span').eq(0).remove();
 		},3000);
 	}
-	
+
 function controlDm(){
 	if(danmuIsOn){
 		danmuIsOn=false;
