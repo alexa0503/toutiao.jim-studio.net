@@ -178,7 +178,7 @@ $(function(){
 	});
 	var data = {};
 	data.link = '{{url("posts",["id"=>$info->id])}}';
-	data.desc = '{{$info->title}}';
+	data.title = '{{$info->title}}';
 	wxShare(data);
 });
 </script>

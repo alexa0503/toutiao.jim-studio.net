@@ -61,7 +61,10 @@ $(function(){
 	});
 	wxData.link = '{{url("posts",["id"=>$info->id])}}';
 	wxData.desc = '{{$info->title}}';
-	wxShare();
+	var data = {};
+	data.link = '{{url("posts",["id"=>$info->id])}}';
+	data.title = '{{$info->title}}';
+	wxShare(data);
 });
 </script>
 @endsection

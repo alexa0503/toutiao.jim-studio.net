@@ -28,8 +28,8 @@ $('document').ready(function () {
     })
 })
 function wxShare(data){
-    wxData = $.extend(wxData,data);
     wx.ready(function () {
+        wxData = $.extend(wxData,data);
         wx.onMenuShareAppMessage({
             title: wxData.title,
             desc: wxData.desc,
