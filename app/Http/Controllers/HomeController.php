@@ -85,9 +85,7 @@ class HomeController extends Controller
         $data = str_replace('data:image/png;base64,', '', $data);
         $data = str_replace(' ', '+', $data);
         $data_image = base64_decode($data);
-        if (false == file_exists(public_path('uploads/'.date('Ymd')))) {
-            @mkdir(public_path('uploads/'.date('Ymd')), 0777);
-        }
+
         $file_name = uniqid().'.png';
         $image_path = 'uploads/'.date('Ymd').'/'.$file_name;
         $result = \Storage::put('uploads/'.date('Ymd').'/'.$file_name, $data_image);
