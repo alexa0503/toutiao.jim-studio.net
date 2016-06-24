@@ -10,6 +10,9 @@ class WechatController extends Controller
 {
     public function auth(Request $request)
     {
+        if (null == $request->get('url')) {
+            $request->session()->set('wechat.callback_url', urlencode($request->get('url')));
+        }
         $app_id = env('WECHAT_APPID');
         $callback_url = $request->getUriForPath('/wechat/callback');
         $state = '';
@@ -63,8 +66,11 @@ class WechatController extends Controller
             $request->session()->set('wechat.openid', $openid);
             $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
             $request->session()->set('wechat.headimg', $wechat->head_img);
-
-            return redirect($request->session()->get('wechat.redirect_uri'));
+            if (null != $request->session()->get('wechat.callback_url')) {
+                return redirect($request->session()->get('wechat.callback_url'));
+            } else {
+                return redirect($request->session()->get('wechat.redirect_uri'));
+            }
         }
     }
 }
