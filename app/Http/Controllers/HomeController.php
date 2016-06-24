@@ -19,13 +19,23 @@ class HomeController extends Controller
     {
         $count = \App\Info::where('id', $this->wechat_user['id'])->count();//
         $collection = \App\Info::with('user')
-            ->where('id', '!=', $this->wechat_user['id'])
+            //->where('id', '!=', $this->wechat_user['id'])
             ->orderBy('created_at', 'DESC')
             ->take(18)
             ->get();
         $infos = $collection->map(function ($item) {
             return [$item->id, $item->user->head_img];
         });
+        $count2 = count($infos);
+        if ($count2 < 18) {
+            for ($i = 1; $i < 19 - $count2; ++$i) {
+                if ($i < 10) {
+                    $infos[] = [1, asset('assets/images/face0'.$i.'.png')];
+                } else {
+                    $infos[] = [1, asset('assets/images/face'.$i.'.png')];
+                }
+            }
+        }
         //var_dump($head_img);
 
         return view('index', ['count' => $count, 'infos' => $infos]);
@@ -74,7 +84,9 @@ class HomeController extends Controller
         $data = str_replace('data:image/png;base64,', '', $data);
         $data = str_replace(' ', '+', $data);
         $data_image = base64_decode($data);
-        mkdir(public_path('uploads/'.date('Ymd')), 0777);
+        if (false == file_exists(public_path('uploads/'.date('Ymd')))) {
+            @mkdir(public_path('uploads/'.date('Ymd')), 0777);
+        }
         $image_path = 'uploads/'.date('Ymd').'/'.uniqid().'.png';
         file_put_contents(public_path($image_path), $data_image);
 
