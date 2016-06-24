@@ -9,7 +9,7 @@ body{ background:#FFF;}
     	<div class="innerDiv">
         	<a href="{{url('info',['id'=>$info->id])}}">
                 <div class="leftFace">
-                    <img src="{{asset('assets/images/img1.png')}}">
+                    <img src="{{asset($info->image_path)}}">
                 </div>
                 <div class="rightTxt">
                     <p class="rTitle">{{$info->title}}</p>
