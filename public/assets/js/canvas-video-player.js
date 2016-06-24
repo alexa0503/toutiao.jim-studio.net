@@ -257,7 +257,9 @@ CanvasVideoPlayer.prototype.loop = function() {
 		this.playing = false;
 		// this.video.currentTime = 0;
 		// 播放完毕
-		alert('over');
+		//alert('over');
+		clearInterval(danmuTime);
+		isPlaying=false;
 		//showBtn();
 	}
 	// if(this.video.currentTime >= 34){
@@ -277,14 +279,16 @@ CanvasVideoPlayer.prototype.loop = function() {
 
 CanvasVideoPlayer.prototype.drawFrame = function() {
 	this.ctx.drawImage(this.video, 0, 0, this.width, this.height);
-	if(vTime>=5.16&&vTime<=8.13){
+	if(vTime>=5.18&&vTime<=8.17){
 		if(canDrawImg){
 			this.ctx.drawImage(cImg, 247, 94,135,79);
 			}
 		}
-	if(vTime>=15.07&&vTime<=17.16){
+	if(vTime>=15.09&&vTime<=17.18){
 		if(canDrawImg){
 			this.ctx.drawImage(cImg, 142, 6,319,233);
 			}
 		}
+	zimuTime=vTime;
+	updateZimu();
 };

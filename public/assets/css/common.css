@@ -57,12 +57,17 @@ h2{ color:#737373; font-size:18px; line-height:100%; padding:0 0 50px 35px;}
 .vImg2{ left:142px; top:6px; width:319px; height:233px; z-index:10;}
 .vTxt{ width:592px; height:80px; color:#FFF; font-size:24px; line-height:80px; z-index:20; left:0; bottom:0; text-align:center; background:#000;}
 .dTxt{ width:592px; height:402px; left:0; top:0; z-index:30;}
-.dTxt span{ position:absolute; left:592px; font-size:18px; width:200px; color:#FFF; z-index:40;}
-.dTxt span.dLine1{ top:30px; -webkit-animation:dLine 3s 0s linear both;}
+.dTxt span{ position:absolute; left:592px; font-size:22px; width:200px; color:#FFF; z-index:40;}
+.dTxt span.dLine1{ top:10px; -webkit-animation:dLine 4s 0s linear both;}
 @-webkit-keyframes dLine{
 0%{ -webkit-transform:translate(0,0);}
-100%{ -webkit-transform:translate(-700px,0);}
+100%{ -webkit-transform:translate(-900px,0);}
 }
+.dTxt span.dLine2{ top:30px; color:red; -webkit-animation:dLine 4s 0.5s linear both;}
+.dTxt span.dLine3{ top:70px; color:green; -webkit-animation:dLine 4s 0.8s linear both;}
+.dTxt span.dLine4{ top:110px; color:white; -webkit-animation:dLine 4s 1s linear both;}
+.dTxt span.dLine5{ top:60px; color:yellow; -webkit-animation:dLine 4s 1s linear both;}
+.dTxt span.dLine6{ top:90px; color:white; -webkit-animation:dLine 4s 2s linear both;}
 
 .guang1{ width:592px; height:375px; margin:20px auto; background:#000000; overflow:hidden;}
 .guang1Img{ position:absolute; left:-10px; top:90px;}
