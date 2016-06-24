@@ -55,6 +55,9 @@ class HomeController extends Controller
         if (null == $info) {
             return redirect('/');
         }
+        $user_id = \Request::session()->get('wechat.id');
+        $count = \App\LikeLog::where('info_id', $id)->where('voter_id', $user_id)->count();
+
         $session = \Request::session();
         if (null != $session->get('scan.like_num') && $info->is_scan == 0) {
             $info->like_num += $session->get('scan.like_num');
@@ -62,7 +65,7 @@ class HomeController extends Controller
             $info->save();
         }
 
-        return view('info', ['info' => $info]);
+        return view('info', ['info' => $info, 'count' => $count]);
     }
     public function posts($id)
     {
@@ -111,9 +114,7 @@ class HomeController extends Controller
         $result = ['ret' => 0, 'msg' => ''];
         $user_id = \Request::session()->get('wechat.id');
         $count = \App\LikeLog::where('info_id', $id)->where('voter_id', $user_id)->count();
-        if ($user_id == $id) {
-            $result = ['ret' => 1001, 'msg' => '不能给自己点赞喔'];
-        } elseif ($count == 0) {
+        if ($count == 0) {
             $result['like_num'] = \DB::transaction(function () use ($id, $user_id) {
                 $info = \App\Info::find($id);
                 $info->like_num += 1;

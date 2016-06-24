@@ -85,10 +85,16 @@ body{ background:#FFF;}
     </div>
 
     <div class="bottomBtns">
-		@if ($info->id == Request::session()->get('wechat.id'))
-		<img src="{{asset('assets/images/shareBtn1.png')}}">
+		@if ($count > 0)
+		<img src="{{asset('assets/images/shareBtn1b.png')}}">
 		@else
-		<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn1.png')}}"></a>
+		<a id="voteImg" href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');">
+			<img src="{{asset('assets/images/shareBtn1.png')}}">
+			<img src="{{asset('assets/images/shareBtn1b.png')}}" style="display:none;">
+		</a>
+		@endif
+
+		@if ($info->id != Request::session()->get('wechat.id'))
 		<a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
 		@endif
 

@@ -377,6 +377,8 @@ function voteThis(url) {
             if(json.ret == 0){
                 $('.zanBlock span').html(json.like_num);
                 $('.zanBlock').find('a').unbind('click');
+                $('#voteImg').find('img').eq(0).hide();
+                $('#voteImg').find('img').eq(1).show();
             }
             else{
                 //alert(json.msg);
