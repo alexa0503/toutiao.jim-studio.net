@@ -69,11 +69,16 @@ class WechatController extends Controller
             $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
             $request->session()->set('wechat.headimg', $wechat->head_img);
             if (null != $request->session()->get('wechat.callback_url')) {
-                if (!preg_match('/^http:\/\/xx.com/i', $request->session()->get('wechat.callback_url'))) {
+                if (!preg_match('/^http:\/\/crm.luolai.com.cn/i', $request->session()->get('wechat.callback_url'))) {
                     return view('errors/503', ['error_msg' => '来源地址不正确~']);
                 }
+                $query_string = http_build_query([
+                    'id'=>$openid
+                ]);
+                $url = $request->session()->get('wechat.callback_url').'?'.$query_string;
 
-                return redirect($request->session()->get('wechat.callback_url'));
+
+                return redirect($url);
             } else {
                 return redirect($request->session()->get('wechat.redirect_uri'));
             }

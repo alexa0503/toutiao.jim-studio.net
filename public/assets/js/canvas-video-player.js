@@ -261,6 +261,8 @@ CanvasVideoPlayer.prototype.loop = function() {
 		clearInterval(danmuTime);
 		$('.playBtn').show();
 		isPlaying=false;
+		danmuStep=0;
+		danmuStyle=1;
 		//showBtn();
 	}
 	// if(this.video.currentTime >= 34){
@@ -287,7 +289,7 @@ CanvasVideoPlayer.prototype.drawFrame = function() {
 		}
 	if(vTime>=15.09&&vTime<=17.18){
 		if(canDrawImg){
-			this.ctx.drawImage(cImg, 142, 6,319,233);
+			this.ctx.drawImage(cImg, 118, 0,367,249);
 			}
 		}
 	zimuTime=vTime;
