@@ -15,6 +15,7 @@
         var wxShareUrl = '{{url("wx/share")}}';
     </script>
     <script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.imgpreload.js')}}"></script>
     <script src="{{asset('assets/js/exif.js')}}"></script>
     <script src="{{asset('assets/js/hammer.js')}}"></script>
     <script src="{{asset('assets/js/jquery.transit.min.js')}}"></script>

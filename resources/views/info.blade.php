@@ -85,22 +85,17 @@ body{ background:#FFF;}
     </div>
 
     <div class="bottomBtns">
-		@if ($count > 0)
-		<img src="{{asset('assets/images/shareBtn1b.png')}}">
+		@if ($info->id == Request::session()->get('wechat.id'))
+		<img src="{{asset('assets/images/shareBtn1.png')}}">
 		@else
-		<a id="voteImg" href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');">
-			<img src="{{asset('assets/images/shareBtn1.png')}}">
-			<img src="{{asset('assets/images/shareBtn1b.png')}}" style="display:none;">
-		</a>
+		<a href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');"><img src="{{asset('assets/images/shareBtn1.png')}}"></a>
 		@endif
 
-		@if ($info->id != Request::session()->get('wechat.id'))
-		<a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
-		@endif
-
-
+        <a href="{{url('/')}}"><img src="{{asset('assets/images/shareBtn2.png')}}"></a>
     </div>
 </div>
+<audio src="{{asset('assets/images/bgm.mp3')}}" style='display:none; height:0;' id='bgm'>
+</audio>
 @endsection
 @section('scripts')
 <script>
@@ -113,10 +108,59 @@ var isAndroid = navigator.userAgent.toLowerCase().indexOf('android') >= 0;
 var zimu=["我们来看下一条新闻","近日哄侃体育馆迎来了一年一度的演唱会","请看报道",'近日"'+userName+'"举办了首个个人演唱会',"现场气氛十分火爆，一度引起交通堵塞","歌迷来自世界各地，是音乐使他们联在了一起 ","现场一起高唱了《"+userTitle+"》"];
 var danmu=["哈哈哈","23333","好棒！","头条","真有意思！","哈哈哈哈！","我也要上头条","好看","有意思！","好听","罗莱头条我要上！"];
 
+var bgm;
 var ld=vd=0;
 
-//isIphone=true;
+var aVideoStep=1;
+var aVideoTime;
+var aVImg;
+var aVIs;
+var aCanvas;
+var aCanvasCtx;
+function andriodPlay(){
+	if(aVideoStep>=477){
+		clearInterval(aVideoTime);
+		clearInterval(danmuTime);
+		danmuStep=0;
+		danmuStyle=1;
+		$('.playBtn').show();
+		isPlaying=false;
+		aVideoStep=1;
+		return false;
+		}
+	if(aVideoStep<10){
+		aVIs='00'+aVideoStep.toString();
+		}
+		else if(aVideoStep<100){
+			aVIs='0'+aVideoStep.toString();
+			}
+			else{
+				aVIs=aVideoStep;
+				}
 
+	zimuTime=aVideoStep/477*20-0.2;
+	updateZimu();
+
+	aVImg=new Image();
+	aVImg.onload=function(){
+		aCanvasCtx.drawImage(aVImg, 0, 0, 592, 402);
+		aVideoStep=aVideoStep+2;
+
+		if(zimuTime>=5.18&&zimuTime<=8.17){
+			if(canDrawImg){
+				aCanvasCtx.drawImage(cImg, 247, 94,135,79);
+				}
+			}
+		if(zimuTime>=15.09&&zimuTime<=17.18){
+			if(canDrawImg){
+				aCanvasCtx.drawImage(cImg, 118, 0,367,249);
+				}
+			}
+		}
+	aVImg.src="{{asset('assets/images/tmp/')}}/00"+aVIs+".jpeg";
+	}
+
+//isIphone=true;
 if (isIphone) {
 	var canvasVideo = new CanvasVideoPlayer({
 		videoSelector: '.js-video',
@@ -124,49 +168,13 @@ if (isIphone) {
 		hideVideo: true,
 		audio: true,
 	});
-}else if(isAndroid){
+}else{
 	//安卓用序列帧
+	aCanvas=document.getElementById('canvas');
+	aCanvasCtx=aCanvas.getContext('2d');
+	bgm=document.getElementById('bgm');
 	}
-else {
-	vd = 1;
-	$('canvas').hide();
-	$('.video').remove();
-	$('.videoBlock .innerDiv').append('<video src="{{asset('assets/images/video.mp4')}}" id="video" width="592" height="402" style="background:#000; position:absolute; left:0; top:0; z-index:5;" webkit-playsinline></video>')
 
-	$('#video').get(0).load();
-	// $('#video').get(0).play();
-	/*$('#video').get(0).addEventListener('canplaythrough',function(){
-	})*/
-
-	$('#video').hide();
-
-	$('#video').get(0).addEventListener('timeupdate',function(){
-		aV=document.getElementById('canvas');
-		aVctx=aV.getContext('2d');
-		cV=document.getElementById('video');
-		aVctx.drawImage(cV,0,0,592,402);
-
-		$('canvas').show();
-		var ct=$('#video').get(0).currentTime;
-
-		if(ct>=5.195&&ct<=8.19){//5.16 8.13
-			$('.vImg1').show();
-			}
-		else if(ct>=15.09&&ct<=17.22){//15.07 17.16
-			$('.vImg2').show();
-			}
-		else{
-			$('.vImg1').hide();
-			$('.vImg2').hide();
-			}
-	})
-
-	$('#video').on('ended',function(){
-		showEnd();
-		$('#video').remove();
-	})
-
-}
 function showEnd(){
 	//播放完毕
 }
@@ -180,7 +188,14 @@ $('.videoBlock').on('click',function(){
 		canvasVideo.play();
 		isPlaying=true;
 	}else{
-		//$('#video').width(592).height(402).get(0).play();
+		if(canPlayVideo){
+			$('.playBtn').hide();
+			$('canvas').show();
+			$('.video').remove();
+			bgm.play();
+			startDanmu();
+			aVideoTime=setInterval(function(){andriodPlay();},83.3);
+			}
 	}
 })
 
@@ -192,6 +207,7 @@ canDrawImg=true;
 cImg.src="{{asset($info->image_path)}}";
 
 $(function(){
+	loadingVideo();
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -283,6 +299,39 @@ function controlDm(){
 				startDanmu();
 				}
 			}
+	}
+
+var canPlayVideo=false;
+function loadingVideo(){
+	var images=[];
+	for(var i=1;i<477;i=i+2){
+		var imgId='';
+		if(i<10){
+			imgId='00'+i.toString();
+			}
+			else if(i<100){
+				imgId='0'+i.toString();
+				}
+				else{
+					imgId=i;
+					}
+		images.push("{{asset('assets/images/tmp/')}}/00"+imgId+".jpeg");
+		}
+
+
+    /*图片预加载*/
+    var imgNum=0;
+    $.imgpreload(images,
+            {
+                each: function () {
+                    var status = $(this).data('loaded') ? 'success' : 'error';
+                    if (status == "success") {
+                    }
+                },
+                all: function () {
+					canPlayVideo=true;
+                }
+            });
 	}
 </script>
 @endsection
