@@ -194,12 +194,15 @@ $('.videoBlock').on('click',function(){
 		isPlaying=true;
 	}else{
 		if(canPlayVideo){
-			$('.playBtn').hide();
-			$('canvas').show();
-			$('.video').remove();
-			bgm.play();
-			startDanmu();
-			aVideoTime=setInterval(function(){andriodPlay();},83.3);
+			if(!isPlaying){
+				$('.playBtn').hide();
+				$('canvas').show();
+				$('.video').remove();
+				bgm.play();
+				startDanmu();
+				isPlaying=true;
+				aVideoTime=setInterval(function(){andriodPlay();},83.3);
+				}
 			}
 	}
 })
