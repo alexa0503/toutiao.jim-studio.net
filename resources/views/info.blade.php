@@ -60,7 +60,7 @@ body{ background:#FFF;}
     <div class="guang2">
     	<div class="innerDiv">
         	<div class="guang2Img">
-            	<img src="{{asset($info->image_path)}}" width="212">
+            	<img src="{{asset($info->image_path)}}" width="350">
             </div>
         	<img src="{{asset('assets/images/shareImg2.png')}}" class="abs guangCover">
         </div>
