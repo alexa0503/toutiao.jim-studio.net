@@ -65,6 +65,7 @@
 <script>
 var wHeight;
 $(function(){
+	_czc.push(["_trackEvent","头条","第一步"]);
 	wHeight=$(window).height();
 	if(wHeight>=832){
 		$('body').on('touchmove', function (e) {

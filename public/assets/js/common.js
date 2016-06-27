@@ -265,6 +265,7 @@ function btnSelImg() {
 function goPage2() {
     $('.page1').fadeOut(500);
     $('.page2').fadeIn(500);
+	_czc.push(["_trackEvent","头条","第二步"]);
 }
 
 function backPage1() {
@@ -325,6 +326,7 @@ function backPage2() {
 }
 
 function goPage5() {
+	_czc.push(["_trackEvent","头条","第三步"]);
     $('.page4').fadeOut(500);
     $('.page5').fadeIn(500);
 }

@@ -42,6 +42,10 @@
     <!--移动端版本兼容 end -->
 </head>
 <body>
+<div style="display:none;">
+	<script src="http://s4.cnzz.com/z_stat.php?id=1259710222&web_id=1259710222" language="JavaScript"></script>
+</div>
+
 @yield('content')
 @yield('scripts')
 </body>

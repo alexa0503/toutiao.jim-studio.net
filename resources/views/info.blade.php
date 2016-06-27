@@ -86,7 +86,7 @@ body{ background:#FFF;}
 
     <div class="bottomBtns">
 		@if ($count > 0)
-		<img src="{{asset('assets/images/shareBtn1b.png')}}">
+		<a><img src="{{asset('assets/images/shareBtn1b.png')}}"></a>
 		@else
 		<a id="voteImg" href="javascript:void(0);" onClick="voteThis('{{url("like",["id"=>$info->id])}}');">
 			<img src="{{asset('assets/images/shareBtn1.png')}}">
@@ -215,7 +215,10 @@ canDrawImg=true;
 cImg.src="{{asset($info->image_path)}}";
 
 $(function(){
-	loadingVideo();
+	_czc.push(["_trackEvent","头条","新闻内页"]);
+	if(!isIphone){
+		loadingVideo();
+		}
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

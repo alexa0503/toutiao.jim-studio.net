@@ -38,6 +38,7 @@ body{ background:#eee9c6;}
 @section('scripts')
 <script>
 $(function(){
+	_czc.push(["_trackEvent","头条","首页"]);
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

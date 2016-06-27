@@ -55,7 +55,7 @@ body{ background:#FFF;}
 @section('scripts')
 <script>
 $(function(){
-
+	_czc.push(["_trackEvent","头条","新闻列表"]);
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
