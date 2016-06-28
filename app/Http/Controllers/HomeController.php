@@ -65,11 +65,18 @@ class HomeController extends Controller
             $info->save();
         }
 
+        if( $info->is_activity == 0){
+            $info->image_path = 'assets/images/thumb.jpg';
+        }
+
         return view('info', ['info' => $info, 'count' => $count]);
     }
     public function posts($id)
     {
         $info = \App\Info::find($id);
+        if( $info->is_activity == 0){
+            $info->image_path = 'assets/images/thumb.jpg';
+        }
         $collection = \App\Post::all();
         $num = count($collection) < 10 ? count($collection) : 10;
         $random = $collection->random($num);

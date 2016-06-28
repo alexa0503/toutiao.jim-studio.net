@@ -20,7 +20,11 @@ class Menu
                 ['cms/post/create', '添加'],
             ],
             ['cms/wechat', '用户授权记录'],
-            ['cms/infos', '照片查看'],
+            [
+                ['#', '照片管理'],
+                ['cms/infos', '查看'],
+                ['cms/infos/export', '导出'],
+            ],
         ];
         $html = '';
         foreach ($list as $menu) {

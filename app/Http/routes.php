@@ -78,6 +78,9 @@ Route::get('/cms/photos/export', 'CmsController@photosExport');
 Route::get('/cms/sessions', 'CmsController@sessions');
 Route::get('/cms/session/{id}', 'CmsController@sessions');
 Route::get('/cms/infos', 'CmsController@infos');
+Route::post('/cms/info/update/{id}', 'CmsController@updateInfo');
+Route::post('/cms/info/disable/{id}', 'CmsController@disableInfo');
+Route::get('/cms/infos/export', 'CmsController@export');
 
 //新闻
 Route::resource('cms/post', 'PostController');

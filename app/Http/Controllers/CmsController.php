@@ -48,10 +48,44 @@ class CmsController extends Controller
 
         return view('cms/wechat_user',['wechat_users' => $wechat_users]);
     }
-    public function infos()
+    public function infos(Request $request)
     {
-        $infos = \App\Info::paginate(20);
+        if( null != $request->input('nickname')){
+            $infos = \App\Info::whereHas('user', function ($query) use($request) {
+                $nick_name = json_encode($request->input('nickname'));
+                $nick_name = preg_replace(['/^"/','/"$/'], ['',''], $nick_name);
+                $query->where('nick_name', 'like', '%'.$nick_name.'%');
+            })->paginate(100);
+        }
+        else{
+            if( $request->get('order') == 'num' ){
+                $infos = \App\Info::orderBy('like_num','DESC')->paginate(20);
+            }
+            elseif( $request->get('order') == 'time' ){
+                $infos = \App\Info::orderBy('created_at','DESC')->paginate(20);
+            }
+            else{
+                $infos = \App\Info::paginate(20);
+            }
+        }
+
         return view('cms/infos', ['infos'=>$infos]);
+    }
+    public function updateInfo(Request $request, $id)
+    {
+        $info = \App\Info::find($id);
+        $info->like_num = $request->input('like_num');
+        $info->save();
+        $data = ['like_num'=>$info->like_num];
+        return ['ret'=>0, 'msg'=>'', 'data'=>$data];
+    }
+    public function disableInfo(Request $request, $id)
+    {
+        $info = \App\Info::find($id);
+        $info->is_activity = $info->is_activity == 0 ? 1 : 0;
+        $info->save();
+        $data = ['is_activity'=>$info->is_activity];
+        return ['ret'=>0, 'msg'=>'', 'data'=>$data];
     }
     /**
      * 账户管理
@@ -78,18 +112,17 @@ class CmsController extends Controller
      */
     public function export()
     {
-        $filename = 'lottery'.date('YmdHis');
-        $collection = \App\Photo::all();
+        $filename = 'info_'.date('ymd');
+        $collection = \App\Info::all();
         $data = $collection->map(function($item){
             return [
-                $item->id,
-                $item->sid,
-                url('uploads/'.$item->image),
-                $item->attitude,
-                $item->self_name,
-                $item->friend_name,
-                $item->created_time,
-                $item->created_ip,
+                json_decode($item->user->nick_name),
+                $item->title,
+                url('uploads/'.$item->image_path),
+                $item->like_num,
+                $item->is_scan == 1 ? '是' : '否',
+                $item->created_at,
+                $item->ip_address,
             ];
         });
         Excel::create($filename, function($excel) use($data) {
@@ -99,7 +132,7 @@ class CmsController extends Controller
             // Call them separately
             $excel->setDescription('照片');
             $excel->sheet('Sheet', function($sheet) use($data) {
-                $sheet->row(1, array('ID','sid','照片地址','态度','自己名','朋友名','创建时间','创建IP'));
+                $sheet->row(1, array('微信昵称','标题','图片URL','点赞数','是否扫码','创建时间','创建IP'));
                 $sheet->fromArray($data, null, 'A2', false, false);
             });
         })->download('xlsx');
