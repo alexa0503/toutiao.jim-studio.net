@@ -45,29 +45,6 @@ class WechatController extends Controller
             return view('errors/503', ['error_msg' => $user_data->message]);
             //return $user_data->message;
         } else {
-            $wechat_user = \App\WechatUser::where('open_id', $openid);
-            if ($wechat_user->count() > 0) {
-                $wechat = $wechat_user->first();
-                $wechat->updated_at = Carbon::now();
-            } else {
-                $wechat = new \App\WechatUser();
-                $wechat->open_id = $openid;
-                $wechat->created_at = Carbon::now();
-                $wechat->ip_address = $request->getClientIp();
-                $wechat->updated_at = null;
-            }
-            $wechat->gender = $user_data->sex;
-            $wechat->head_img = $user_data->headimgurl;
-            $wechat->nick_name = json_encode($user_data->nickname);
-            $wechat->country = $user_data->country;
-            $wechat->province = $user_data->province;
-            $wechat->city = $user_data->city;
-            //$wechat->options = $options;
-            $wechat->save();
-            $request->session()->set('wechat.id', $wechat->id);
-            $request->session()->set('wechat.openid', $openid);
-            $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
-            $request->session()->set('wechat.headimg', $wechat->head_img);
             if (null != $request->session()->get('wechat.callback_url')) {
                 if (!preg_match('/^http:\/\/crm.luolai.com.cn/i', $request->session()->get('wechat.callback_url'))) {
                     return view('errors/503', ['error_msg' => '来源地址不正确~']);
@@ -76,10 +53,31 @@ class WechatController extends Controller
                     'id'=>$openid
                 ]);
                 $url = $request->session()->get('wechat.callback_url').'?'.$query_string;
-
-
                 return redirect($url);
             } else {
+                $wechat_user = \App\WechatUser::where('open_id', $openid);
+                if ($wechat_user->count() > 0) {
+                    $wechat = $wechat_user->first();
+                    $wechat->updated_at = Carbon::now();
+                } else {
+                    $wechat = new \App\WechatUser();
+                    $wechat->open_id = $openid;
+                    $wechat->created_at = Carbon::now();
+                    $wechat->ip_address = $request->getClientIp();
+                    $wechat->updated_at = null;
+                }
+                $wechat->gender = $user_data->sex;
+                $wechat->head_img = $user_data->headimgurl;
+                $wechat->nick_name = json_encode($user_data->nickname);
+                $wechat->country = $user_data->country;
+                $wechat->province = $user_data->province;
+                $wechat->city = $user_data->city;
+                //$wechat->options = $options;
+                $wechat->save();
+                $request->session()->set('wechat.id', $wechat->id);
+                $request->session()->set('wechat.openid', $openid);
+                $request->session()->set('wechat.nickname', json_decode($wechat->nick_name));
+                $request->session()->set('wechat.headimg', $wechat->head_img);
                 return redirect($request->session()->get('wechat.redirect_uri'));
             }
         }
