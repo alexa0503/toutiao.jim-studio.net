@@ -24,8 +24,10 @@ Route::get('wx/share', function () {
       'link' => url('/'),
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
     ];
-
-    return json_encode(array_merge($share, $config));
+    if( null != Request::get('callback') ){
+      return Request::get('callback').'('.json_encode(array_merge($share, $config)).')';
+    }
+    return array_merge($share, $config);
 });
 Route::get('logout', function () {
     Request::session()->set('wechat', null);
